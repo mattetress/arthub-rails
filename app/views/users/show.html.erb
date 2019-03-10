@@ -1,0 +1,9 @@
+<h1><%= @user.name %>'s Profile</h1>
+
+<p>Image will go here</p>
+
+<p>Website: <%= link_to(@user.website) unless @user.website.nil? %></p>
+
+<h3>User Bio:</h3>
+<p><%= @user.bio %></p>
+<h3>Works:</h3>
