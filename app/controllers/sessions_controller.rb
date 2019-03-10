@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
-    if @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to dashboard_path
+      redirect_to @user
     else
       flash[:error] = "There was a problem logging you in. Please check credentials and try again."
       render :new
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
-    redirect_to :root 
+    redirect_to :root
   end
 
 end
