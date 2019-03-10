@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
-      render :create
+      render 'users#new'
     end
-  end 
+  end
 end
