@@ -27,11 +27,18 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'thin'
+
+gem 'open_uri_redirections'
+
 gem 'omniauth'
 
 gem 'omniauth-facebook'
 
 gem 'dotenv-rails'
+
+gem 'pry'
+gem 'pry-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
