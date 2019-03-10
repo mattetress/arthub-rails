@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root 'static#home'
   get '/signup' => 'users#new', as: 'new_user'
   post '/signup' => 'users#create', as: 'users'
-  resources :sessions, :only => [:new, :create, :destroy]
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
   resources :users, except: [:new, :create]
 
 end

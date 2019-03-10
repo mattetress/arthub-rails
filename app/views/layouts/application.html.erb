@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to "Log Out", "/logout", method: :delete %>
+    </header>
     <%= yield %>
   </body>
 </html>
