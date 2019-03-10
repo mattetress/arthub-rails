@@ -1,10 +1,10 @@
 <h1>Log In</h1>
 
-<% if flash[:error].any? %>
+<% if flash[:error] %>
   <h3><%= flash[:error] %></h3>
 <% end %>
 
-<% form_tag "/login", method: :post do %>
+<%= form_tag "/login", method: :post do %>
   <%= label_tag "email" %>
   <%= text_field_tag :email %>
   <br>
