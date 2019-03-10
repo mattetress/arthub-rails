@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_user
 
   def logged_in?
     !!session[:user_id]
@@ -10,5 +11,9 @@ class ApplicationController < ActionController::Base
 
   def login_required
     redirect_to :root unless logged_in?
-  end 
+  end
+
+  def owner_required
+    return head(:forbidden) unless current_user == @user
+  end
 end

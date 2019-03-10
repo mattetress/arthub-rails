@@ -1,5 +1,7 @@
 <h1><%= @user.name %>'s Profile</h1>
 
+<p><%= link_to "Edit profile", edit_user_path(@user) if current_user == @user %></p>
+
 <%= image_tag(@user.avatar) if @user.avatar.attached?%>
 
 <p>Website: <%= link_to(@user.website) unless @user.website.nil? %></p>
