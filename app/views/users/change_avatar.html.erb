@@ -1,0 +1,7 @@
+<h1>Update Profile Picture</h1>
+
+<p>Choose a new profile picture:</p>
+<%= form_for @user do |f| %>
+  <%= f.file_field :avatar %>
+  <%= f.submit "Update" %>
+<% end %>
