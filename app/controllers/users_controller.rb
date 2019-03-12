@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_avatar
+    @user = User.find(params[:id])
+    owner_required
+  end 
+
 
   private
 

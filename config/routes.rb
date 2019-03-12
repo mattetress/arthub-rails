@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#facebook'
   resources :users, except: [:new, :create]
+  get '/users/:id/update_photo' => 'users#change_avatar', as: 'edit_avatar'
 
 end
