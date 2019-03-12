@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user
+      render :edit 
     else
       render :new
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def change_avatar
     @user = User.find(params[:id])
     owner_required
-  end 
+  end
 
 
   private
