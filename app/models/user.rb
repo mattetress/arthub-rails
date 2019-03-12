@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: :true,
                     presence: :true
-  validates :password, presence: :true
+  validates :password, presence: :true, on: :create 
 
   def grab_image(image_url)
     downloaded_image = open(process_uri(image_url))
