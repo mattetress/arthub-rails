@@ -1,7 +1,7 @@
 <h1>Update Profile Picture</h1>
 
 <p>Choose a new profile picture:</p>
-<%= form_tag edit_avatar_path(@user), method: :post do %>
+<%= form_tag edit_avatar_path(@user), method: :post, multipart: true do %>
   <%= file_field_tag 'user[avatar]' %>
   <%= submit_tag "Update" %>
 <% end %>

@@ -44,7 +44,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     owner_required
 
-    @user.avatar.attach(user_params)
+    @user.avatar.purge
+
+    @user.update(user_params)
     redirect_to @user
   end
 
