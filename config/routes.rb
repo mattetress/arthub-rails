@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#facebook'
   resources :users, except: [:new, :create]
   get '/users/:id/update_photo' => 'users#change_avatar', as: 'edit_avatar'
+  post '/users/:id/update_photo' => 'users#update_avatar'
 
 end

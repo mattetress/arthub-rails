@@ -3,8 +3,5 @@
 
 <br><br>
 
-<%= form_for @user do |f| %>
 
-  <%= render :partial => 'profile' %>
-
-<%= end %>
+  <%= render :partial => 'profile', locals: { :user => @user }  %>
