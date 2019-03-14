@@ -19,7 +19,7 @@
     <% end %>
   </ul>
 <% elsif current_user == @user %>
-  <p>You have not added any works to your profile.  You can begin by <%= link_to "adding one now", new_user_artwork_path %></p>
+  <p>You have not added any works to your profile.  You can begin by <%= link_to "adding one now", new_user_artwork_path(@user) %>.</p>
 <% else %>
   <p>This user has not added any works to their portfolio.</p>
 <% end %>
