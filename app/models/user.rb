@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
   has_one_attached :avatar
+  has_many :artworks
 
   validates :email, uniqueness: :true,
                     presence: :true
-  validates :password, presence: :true, on: :create 
+  validates :password, presence: :true, on: :create
 
   def grab_image(image_url)
     downloaded_image = open(process_uri(image_url))
