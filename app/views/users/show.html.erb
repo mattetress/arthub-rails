@@ -15,7 +15,7 @@
 <% if @user.artworks.any? %>
   <ul>
     <% @user.artworks.each do |artwork| %>
-    <li><%= link_to artwork.title, artwork_path(artwork) %> - <%= artwork.date %></li>
+    <li><%= link_to artwork.title, user_artwork_path(@user, artwork) %> - <%= artwork.date %></li>
     <% end %>
   </ul>
 <% elsif current_user == @user %>
