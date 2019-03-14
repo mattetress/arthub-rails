@@ -11,3 +11,15 @@
 <h3>User Bio:</h3>
 <p><%= @user.bio %></p>
 <h3>Works:</h3>
+
+<% if @user.artworks.any? %>
+  <ul>
+    <% @user.artworks.each do |artwork| %>
+    <li><%= link_to artwork.title, artwork_path(artwork) %> - <%= artwork.date %></li>
+    <% end %>
+  </ul>
+<% elsif current_user == @user %>
+  <p>You have not added any works to your profile.  You can begin by <%= link_to "adding one now", new_user_artwork_path %></p>
+<% else %>
+  <p>This user has not added any works to their portfolio.</p>
+<% end %>
