@@ -10,10 +10,8 @@ class ArtworksController < ApplicationController
     @artwork = @user.artworks.build(artwork_params)
 
     if @artwork.save
-      binding.pry
       redirect_to user_artwork_path(@user, @artwork)
     else
-      binding.pry
       render 'artworks/new'
     end
   end
