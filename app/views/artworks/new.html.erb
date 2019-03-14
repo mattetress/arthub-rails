@@ -1,1 +1,32 @@
-<h1>Add work to your ArtHub portfolio:</h1>
+<h1>Add work to your ArtHub portfolio</h1>
+
+<%= form_for([@user, @artwork]) do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <br><br>
+
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <br><br>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <br><br>
+
+  <%= f.label "Link" %>
+  <%= f.text_field :url, placeholder: "http://example.com/"%>
+
+  <br><br>
+
+  <%= f.label :images %><br>
+  <%= f.file_field :images, :multiple => true %>
+
+  <br><br>
+
+  <%= f.submit "Save Artwork" %>
+
+<% end %>
