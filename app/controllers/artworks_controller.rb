@@ -5,6 +5,21 @@ class ArtworksController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
+
+    @artwork = @user.artworks.build(artwork_params)
+
+    if @artwork.save
+      binding.pry
+      redirect_to user_artwork_path(@user, @artwork)
+    else
+      binding.pry
+      render 'artworks/new'
+    end
+  end
+
+  def show
+    @artwork = Artwork.find(params[:id])
   end
 
   def edit
@@ -15,4 +30,12 @@ class ArtworksController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def artwork_params
+    params.require(:artwork).permit(:title, :description, :date, :url, images: [] )
+  end
+
+
 end
