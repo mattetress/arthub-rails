@@ -1,3 +1,14 @@
-ARTWORK SHOW PAGE
+<h1><%= @artwork.title %></h1>
 
-<% raise @artwork.inspect %>
+<h3>Images</h3>
+<% if @artwork.images.attached? %>
+  <ul>
+    <% @artwork.images.each do |image| %>
+      <li><%= link_to image_tag(image.variant(resize: "200x200")), url_for(image) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No images submitted.</p>
+<% end %>
+
+<h3>Link</h3>
