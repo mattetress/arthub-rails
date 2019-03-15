@@ -1,6 +1,4 @@
-<h1><%= @artwork.title %></h1>
 
-<h3>Images</h3>
 <% if @artwork.images.attached? %>
   <ul>
     <% @artwork.images.each do |image| %>
@@ -11,4 +9,8 @@
   <p>No images submitted.</p>
 <% end %>
 
-<h3>Link</h3>
+<h1><%= @artwork.title %></h1>
+<h3><%= @artwork.user.name %> - <%= @artwork.date.strftime("%B %Y") %></h3>
+
+<p><%= @artwork.description %></p>
+<p>Link: <%= link_to @artwork.url %></p>
