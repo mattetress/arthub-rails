@@ -12,5 +12,5 @@
 <h1><%= @artwork.title %></h1>
 <h3><%= @artwork.user.name %> - <%= @artwork.date.strftime("%B %Y") %></h3>
 
-<p><%= @artwork.description %></p>
+<p><%= simple_format(@artwork.description) %></p>
 <p>Link: <%= link_to @artwork.url %></p>
