@@ -50,6 +50,9 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def new_resume
+    @user = User.find(params[:id])
+  end  
 
   private
 
