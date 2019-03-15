@@ -13,6 +13,8 @@
 <h3>Works:</h3>
 
 <% if @user.artworks.any? %>
+<%= link_to "Add Work", new_user_artwork_path(@user) %>
+
   <ul>
     <% @user.artworks.each do |artwork| %>
     <li>
