@@ -1,0 +1,8 @@
+<h1>Upload a Resume/CV</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.label "Select the Resume/CV PDF you'd like to upload" %>
+  <%= f.file_field :resume %>
+  <br>
+  <%= f.submit "Upload" %>
+<% end %>

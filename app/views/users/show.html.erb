@@ -7,6 +7,16 @@
 <%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
 
 <p>Website: <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
+<p>Resume/CV:
+  <% if @user.resume.attached? %>
+    <%= link_to "View Resume/CV", url_for(@user.resume) %>
+    <%= link_to "Update Resume/CV", new_user_resume_path(@user) %>
+  <% elsif @user == current_user %>
+    <%= link_to "Upload Resume/CV", new_user_resume_path(@user) %>
+  <% else %>
+    User has not uploaded a resume/CV.
+  <% end %>
+</p>
 
 <h3>User Bio:</h3>
 <p><%= @user.bio %></p>
