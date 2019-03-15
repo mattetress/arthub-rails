@@ -6,7 +6,7 @@
 <br>
 <%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
 
-<p>Website: <%= link_to(@user.website) unless @user.website.nil? %></p>
+<p>Website: <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
 
 <h3>User Bio:</h3>
 <p><%= @user.bio %></p>
