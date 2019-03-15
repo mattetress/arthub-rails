@@ -23,4 +23,7 @@ Rails.application.routes.draw do
 
   post '/users/:id/update_photo' => 'users#update_avatar'
 
+  get 'users/:id/upload_resume' => 'users#new_resume', as: 'new_user_resume'
+
+
 end
