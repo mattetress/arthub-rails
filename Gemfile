@@ -39,9 +39,11 @@ gem 'dotenv-rails'
 
 gem 'image_processing', '~> 1.2'
 
+gem 'rb-readline'
 
-gem 'pry'
-gem 'pry-rails'
+
+# gem 'pry'
+# gem 'pry-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
