@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :resume
   has_many :artworks
+  has_many :events
 
   validates :email, uniqueness: :true,
                     presence: :true
