@@ -1,6 +1,6 @@
 <h1>Upload a Resume/CV</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, url: new_user_resume_path(@user) do |f| %>
   <%= f.label "Select the Resume/CV PDF you'd like to upload" %>
   <%= f.file_field :resume %>
   <br>

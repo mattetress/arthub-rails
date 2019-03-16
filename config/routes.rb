@@ -25,5 +25,9 @@ Rails.application.routes.draw do
 
   get 'users/:id/upload_resume' => 'users#new_resume', as: 'new_user_resume'
 
+  post 'users/:id/upload_resume' => 'users#attach_resume'
+
+  patch 'users/:id/upload_resume' => 'users#attach_resume'
+
 
 end

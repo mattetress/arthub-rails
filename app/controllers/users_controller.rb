@@ -52,7 +52,17 @@ class UsersController < ApplicationController
 
   def new_resume
     @user = User.find(params[:id])
-  end  
+  end
+
+  def attach_resume
+    @user = User.find(params[:id])
+    owner_required
+
+    @user.resume.purge
+
+    @user.update(user_params)
+    redirect_to @user
+  end 
 
   private
 

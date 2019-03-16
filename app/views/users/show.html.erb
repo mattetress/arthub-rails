@@ -7,9 +7,10 @@
 <%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
 
 <p>Website: <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
-<p>Resume/CV:
+<p>Resume/CV: <br>
   <% if @user.resume.attached? %>
-    <%= link_to "View Resume/CV", url_for(@user.resume) %>
+    <%= image_tag @user.resume.preview(resize: "200x200") %> <br>
+    <%= link_to "View Resume/CV", url_for(@user.resume) %><br>
     <%= link_to "Update Resume/CV", new_user_resume_path(@user) %>
   <% elsif @user == current_user %>
     <%= link_to "Upload Resume/CV", new_user_resume_path(@user) %>
