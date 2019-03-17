@@ -1,6 +1,7 @@
 <h1><%= @event.name %></h1>
+<p>Posted by: <%= link_to @event.user.name, user_path(@event.user)  %> at <%= @event.created_at.strftime("%d %b %Y %l:%M %p") %></p>
 
-<%= link_to(image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image)) if @event.image.attached? %>
+<%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) if @event.image.attached? %>
 
 <p>
   <strong>Start time: </strong> <%= @event.start_time.strftime("%A, %d %b %Y %l:%M %p") %><br>
