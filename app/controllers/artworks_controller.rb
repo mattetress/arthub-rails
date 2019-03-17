@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  before_action :set_user, only: [:new, :create, :edit, :update]
+  before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
 
 
@@ -28,10 +28,12 @@ class ArtworksController < ApplicationController
       redirect_to user_artwork_path(@user, @artwork)
     else
       render 'artworks/edit'
-    end 
+    end
   end
 
   def destroy
+    @artwork.destroy
+    redirect_to user_path(@user)
   end
 
   private
