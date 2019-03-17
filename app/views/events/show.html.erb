@@ -4,8 +4,14 @@
 <% if @event.user == current_user %>
   <%= link_to "Edit Event", edit_event_path(@event) %>
   <%= link_to "Delete Event", event_path(@event), method: :delete %>
-  <br><br>
+<% elsif current_user.events.include?(@event) %>
+  <p>You are interested in this event.</p>
+  <%= link_to "No Longer Interest in Event", remove_interest_path(@event) %>
+<% else %>
+  <%= link_to "Interested", add_interest_path(@event) %>
 <% end %>
+
+<br>
 
 <%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) if @event.image.attached? %>
 

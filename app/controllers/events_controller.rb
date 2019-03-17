@@ -44,6 +44,18 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def add_interest
+    flash[:success] = "#{@event.name} has been added to your events."
+    @event.users << current_user
+    render 'events/show'
+  end
+
+  def remove_interest
+    flash[:success] = "#{@event.name} successfully removed from your events."
+    @event.users.delete(current_user)
+    render 'events/show'
+  end
+
   private
 
   def event_params
