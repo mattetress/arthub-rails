@@ -4,6 +4,7 @@
 <% if @event.user == current_user %>
   <%= link_to "Edit Event", edit_event_path(@event) %>
   <%= link_to "Delete Event", event_path(@event), method: :delete %>
+  <br><br>
 <% end %>
 
 <%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) if @event.image.attached? %>
