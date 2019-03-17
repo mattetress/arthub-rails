@@ -41,6 +41,7 @@ gem 'image_processing', '~> 1.2'
 
 gem 'rb-readline'
 
+gem 'rails_admin'
 
 # gem 'pry'
 # gem 'pry-rails'
