@@ -1,6 +1,15 @@
 <h1><%= @event.name %></h1>
 
+<%= link_to(image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image)) if @event.image.attached? %>
+
 <p>
-  Start time: <%= @event.start_time.strftime("%A, %d %b %Y %l:%M %p") %><br>
-  End time: <%= @event.end_time.strftime("%A, %d %b %Y %l:%M %p") %>
+  <strong>Start time: </strong> <%= @event.start_time.strftime("%A, %d %b %Y %l:%M %p") %><br>
+  <strong>End time: </strong> <%= @event.end_time.strftime("%A, %d %b %Y %l:%M %p") %><br>
+  <strong>Location: </strong> <%= @event.location %><br>
+  <strong>Accepting Applications: </strong> <%= @event.accepting_applications ? "Yes" : "No" %>
+</p>
+
+<p>
+  <strong>Event Description:</strong>
+  <%= simple_format(@event.description) %>
 </p>
