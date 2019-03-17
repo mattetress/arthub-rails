@@ -1,5 +1,5 @@
 <h1>Upcoming Events</h1>
-<%= link_to "New Event", new_event_path %>
+<%= link_to "New Event", new_event_path %>  <%= link_to "View Past Events", past_events_path %>
 
 <br><br>
 
@@ -13,7 +13,7 @@
     <th>Accepting Applications</th>
   </tr>
 
-<% @events.where("end_time > ?", Time.now).order('start_time asc').each do |event| %>
+<% @events.each do |event| %>
     <tr>
       <td><%= image_tag event.image.variant(resize: "150x150") if event.image.attached? %></td>
       <td><%= link_to event.name, event_path(event) %></td>

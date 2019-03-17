@@ -23,13 +23,16 @@ Rails.application.routes.draw do
 
   post '/users/:id/update_photo' => 'users#update_avatar'
 
-  get 'users/:id/upload_resume' => 'users#new_resume', as: 'new_user_resume'
+  get '/users/:id/upload_resume' => 'users#new_resume', as: 'new_user_resume'
 
-  post 'users/:id/upload_resume' => 'users#attach_resume'
+  post '/users/:id/upload_resume' => 'users#attach_resume'
 
-  patch 'users/:id/upload_resume' => 'users#attach_resume'
+  patch '/users/:id/upload_resume' => 'users#attach_resume'
 
-  resources :events 
+  get '/events/past' => 'events#past_events', as: 'past_events'
+
+  resources :events
+
 
 
 end

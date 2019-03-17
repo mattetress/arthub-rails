@@ -1,9 +1,14 @@
 class EventsController < ApplicationController
-  before_action :find_event, except: [:index, :new, :create]
+  before_action :find_event, except: [:index, :new, :create, :past_events]
   before_action :owner_required, only: [:edit, :destroy, :update]
 
   def index
-    @events = Event.all
+    @events = Event.where("end_time > ?", Time.now).order('start_time asc')
+  end
+
+  def past_events
+    @events = Event.where("end_time < ?", Time.now).order('end_time desc')
+    render 'index'
   end
 
   def new
@@ -31,7 +36,7 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render 'events/edit'
-    end 
+    end
   end
 
   def destroy
