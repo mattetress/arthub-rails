@@ -13,6 +13,13 @@
     <header>
       <%= link_to "Log Out", "/logout", method: :delete %>
     </header>
+
+    <% if flash[:success] %>
+      <h3 class="success"><%= flash[:success] %></h3>
+    <% elsif flash[:error] %>
+      <h3 class="error"><%= flash[:error] %></h3>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
