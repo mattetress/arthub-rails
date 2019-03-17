@@ -1,6 +1,11 @@
 <h1><%= @event.name %></h1>
 <p>Posted by: <%= link_to @event.user.name, user_path(@event.user)  %> at <%= @event.created_at.strftime("%d %b %Y %l:%M %p %Z") %></p>
 
+<% if @event.user == current_user %>
+  <%= link_to "Edit Event", edit_event_path(@event) %>
+  <%= link_to "Delete Event", event_path(@event), method: :delete %>
+<% end %>
+
 <%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) if @event.image.attached? %>
 
 <p>
