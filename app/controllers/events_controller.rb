@@ -26,8 +26,15 @@ class EventsController < ApplicationController
   def edit
   end
 
-  def destroy
+  def update
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render 'events/edit'
+    end 
+  end
 
+  def destroy
     @event.destroy
 
     redirect_to events_path
