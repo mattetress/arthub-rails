@@ -1,0 +1,26 @@
+<h1>Upcoming Events</h1>
+<%= link_to "New Event", new_event_path %>
+
+<br><br>
+
+<table>
+  <tr>
+    <th>Image</th>
+    <th>Event Title</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Location</th>
+    <th>Accepting Applications</th>
+  </tr>
+
+<% @events.where("end_time > ?", Time.now).order('start_time asc').each do |event| %>
+    <tr>
+      <td><%= image_tag event.image.variant(resize: "150x150") if event.image.attached? %></td>
+      <td><%= link_to event.name, event_path(event) %></td>
+      <td><%= event.start_time.strftime("%m/%d/%Y %l:%M%p") %></td>
+      <td><%= event.end_time.strftime("%m/%d/%Y %l:%M%p") %></td>
+      <td><%= event.location %></td>
+      <td><%= event.accepting_applications ? "Yes" : "No" %></td>
+    </tr>
+
+<% end %>
