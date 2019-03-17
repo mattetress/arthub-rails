@@ -1,5 +1,5 @@
 class ArtworksController < ApplicationController
-  before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_and_verify_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
 
 
@@ -42,12 +42,12 @@ class ArtworksController < ApplicationController
     params.require(:artwork).permit(:title, :description, :date, :url, images: [])
   end
 
-  def set_user
+  def set_and_verify_user
     @user = User.find(params[:user_id])
+    return head(:forbidden) unless @user == current_user
   end
 
   def set_artwork
     @artwork = Artwork.find(params[:id])
   end
-
 end
