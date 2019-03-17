@@ -8,7 +8,6 @@ class EventsController < ApplicationController
 
   def past_events
     @events = Event.where("end_time < ?", Time.now).order('end_time desc')
-    render 'index'
   end
 
   def new
