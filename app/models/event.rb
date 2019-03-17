@@ -3,4 +3,12 @@ class Event < ApplicationRecord
   has_one_attached :image
   has_many :interests
   has_many :users, through: :interests
+
+  def self.past_events
+    self.where("end_time < ?", Time.now).order('end_time desc')
+  end
+
+  def self.future_events
+    self.where("end_time > ?", Time.now).order('start_time asc')
+  end
 end

@@ -3,11 +3,11 @@ class EventsController < ApplicationController
   before_action :owner_required, only: [:edit, :destroy, :update]
 
   def index
-    @events = Event.where("end_time > ?", Time.now).order('start_time asc')
+    @events = Event.future_events
   end
 
   def past_events
-    @events = Event.where("end_time < ?", Time.now).order('end_time desc')
+    @events = Event.past_events
   end
 
   def new
@@ -53,7 +53,7 @@ class EventsController < ApplicationController
   def remove_interest
     flash[:success] = "#{@event.name} successfully removed from your events."
     @event.users.delete(current_user)
-    redirect_to @event 
+    redirect_to @event
   end
 
   private
