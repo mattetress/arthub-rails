@@ -8,12 +8,12 @@
   <br><br>
 
   <%= f.label :start_time %>
-  <%= f.datetime_select :start_time, ampm: true, prompt: true %>
+  <%= f.datetime_select :start_time, ampm: true, prompt: true, start_year: Date.today.year %>
 
   <br><br>
 
   <%= f.label :end_time %>
-  <%= f.datetime_select :end_time, ampm: true, prompt: true %>
+  <%= f.datetime_select :end_time, ampm: true, prompt: true, start_year: Date.today.year %>
 
   <br><br>
 
