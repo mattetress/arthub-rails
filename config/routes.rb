@@ -29,5 +29,7 @@ Rails.application.routes.draw do
 
   patch 'users/:id/upload_resume' => 'users#attach_resume'
 
+  resources :events 
+
 
 end

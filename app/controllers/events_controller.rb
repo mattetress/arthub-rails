@@ -11,7 +11,13 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render 'events/new'
-    end 
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :description, :start_time, :end_time, :location, :accepting_applications)
   end
 
 end

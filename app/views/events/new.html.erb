@@ -1,1 +1,39 @@
 <h1>New event</h1>
+
+<%= form_for @event do |f| %>
+
+  <%= f.label "Event Title" %>
+  <%= f.text_field :name %>
+
+  <br><br>
+
+  <%= f.label :start_time %>
+  <%= f.datetime_select :start_time, ampm: true, prompt: true %>
+
+  <br><br>
+
+  <%= f.label :end_time %>
+  <%= f.datetime_select :end_time, ampm: true, prompt: true %>
+
+  <br><br>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+
+  <br><br>
+
+  <%= f.label :description %><br>
+  <%= f.text_area :description, size: '80X90' %>
+
+  <br><br>
+
+  <%= f.label :accepting_applications %>
+  <%= f.check_box :accepting_applications %>
+
+  <br><br>
+
+  <%= f.submit %>
+
+
+
+<% end %>
