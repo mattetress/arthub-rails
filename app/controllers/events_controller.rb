@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :find_event, except: [:index, :new, :create]
+  before_action :owner_required, only: [:edit, :destroy, :update]
 
   def index
     @events = Event.all
@@ -10,6 +11,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
       redirect_to @event
@@ -22,11 +24,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    owner_required
   end
 
   def destroy
-    owner_required
 
     @event.destroy
 
