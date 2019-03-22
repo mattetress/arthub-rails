@@ -6,7 +6,8 @@ Specs:
     User has_many artworks
 - [x] Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
     Artwork belongs_to User
-- [ ] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
+- [x] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
+      User has_many events through interests, event has_many users through interests  
 
 - [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
     User has_many Events through interests, Event has_many Users through interests
@@ -14,7 +15,7 @@ Specs:
 - [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
     User, Artwork,
 - [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-    User.past_events URL: /events/past 
+    User.past_events URL: /events/past
 - [x] Include signup (how e.g. Devise)
     self written
 - [x] Include login (how e.g. Devise)
