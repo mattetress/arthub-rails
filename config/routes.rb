@@ -36,7 +36,9 @@ Rails.application.routes.draw do
 
   get '/events/:id/remove_interest' => 'events#remove_interest', as: 'remove_interest'
 
-  resources :events
+  resources :events do
+    resources :comments, except: [:index, :show]
+  end
 
 
 
