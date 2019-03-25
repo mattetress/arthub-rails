@@ -33,3 +33,16 @@
   <br>
   <%= f.submit "add comment" %>
 <% end %>
+<br><br>
+
+<ul>
+  <% @event.comments.each do |comment| %>
+    <li>
+      <%= comment.user.name %> commented <br>
+      <%= comment.body %> <br>
+      <% if comment.user == current_user %>
+        <%= link_to "Edit", edit_event_comment_path(@event, comment) %> <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+      <% end %>
+    </li> <br>
+  <% end %>
+</ul>
