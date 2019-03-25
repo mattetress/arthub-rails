@@ -26,3 +26,10 @@
   <strong>Event Description:</strong>
   <%= simple_format(@event.description) %>
 </p>
+
+<h2>Comments</h2>
+<%= form_for([@event, @comment]) do |f| %>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit "add comment" %>
+<% end %>

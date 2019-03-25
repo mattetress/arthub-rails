@@ -3,7 +3,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_one_attached :resume
   has_many :artworks
-  has_many :events, :comments
+  has_many :events
+  has_many :comments
   has_many :interests
   has_many :events, through: :interests
 

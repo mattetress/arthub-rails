@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :interests, :comments 
+  has_many :interests
+  has_many :comments
   has_many :users, through: :interests
 
   def self.past_events
