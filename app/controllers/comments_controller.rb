@@ -29,6 +29,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @event = Event.find_by(id: params[:event_id])
+    @comment = Comment.find(params[:id])
+    @comment.delete
+
+    flash[:success] = "Comment has been deleted."
+    
+    redirect_to @event
   end
 
   private
