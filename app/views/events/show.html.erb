@@ -28,11 +28,7 @@
 </p>
 
 <h2>Comments</h2>
-<%= form_for([@event, @comment]) do |f| %>
-  <%= f.text_area :body %>
-  <br>
-  <%= f.submit "add comment" %>
-<% end %>
+<%= render :partial => "comments/form", locals: {:event => @event, :comment => @comment} %>
 <br><br>
 
 <ul>
