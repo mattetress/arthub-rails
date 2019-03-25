@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :set_event
+  before_action :set_comment, except: [:create]
 
   def create
-    @event = Event.find_by(id: params[:event_id])
     @comment = @event.comments.build(comment_params)
     @comment.user = current_user
 
@@ -13,14 +14,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @event = Event.find_by(id: params[:event_id])
-    @comment = Comment.find(params[:id])
   end
 
   def update
-    @event = Event.find_by(id: params[:event_id])
-    @comment = Comment.find(params[:id])
-
     if @comment.update(comment_params)
       redirect_to @event
     else
@@ -29,12 +25,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find_by(id: params[:event_id])
-    @comment = Comment.find(params[:id])
     @comment.delete
 
     flash[:success] = "Comment has been deleted."
-    
+
     redirect_to @event
   end
 
@@ -42,5 +36,13 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body)
+  end
+
+  def set_event
+    @event = Event.find_by(id: params[:event_id])
+  end
+
+  def set_comment
+    @comment = Comment.find(params[:id])
   end
 end
