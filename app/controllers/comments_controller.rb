@@ -9,13 +9,23 @@ class CommentsController < ApplicationController
       redirect_to @event
     else
       render 'events/show'
-    end 
+    end
   end
 
   def edit
+    @event = Event.find_by(id: params[:event_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @event = Event.find_by(id: params[:event_id])
+    @comment = Comment.find(params[:id])
+
+    if @comment.update(comment_params)
+      redirect_to @event
+    else
+      render "comments/edit"
+    end
   end
 
   def destroy
