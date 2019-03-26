@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.delete
-
     flash[:success] = "Comment has been deleted."
 
     redirect_to @event
