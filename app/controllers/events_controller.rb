@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.location = Location.new(event: @event)
   end
 
   def create
@@ -60,7 +61,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :start_time, :end_time, :venue, :accepting_applications, :image)
+    params.require(:event).permit(:name, :description, :start_time, :end_time, :venue, :accepting_applications, :image, location_attributes: [:city_id, :area])
   end
 
   def owner_required
