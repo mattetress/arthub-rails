@@ -7,6 +7,11 @@ class Event < ApplicationRecord
   has_one :location, dependent: :destroy
   has_one :city, through: :location
   accepts_nested_attributes_for :location
+  validates :name, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :venue, presence: true
+  validates :description, presence: true
 
   def self.past_events
     self.where("end_time < ?", Time.now).order('end_time desc')
