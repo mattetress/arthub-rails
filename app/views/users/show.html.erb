@@ -6,7 +6,7 @@
 <br>
 <%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
 
-<p>Website: <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
+<p><%= "Website:" unless @user.website == "" || @user.website.nil? %> <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
 <p>Resume/CV: <br>
   <% if @user.resume.attached? %>
     <%= image_tag @user.resume.preview(resize: "200x200") %> <br>
