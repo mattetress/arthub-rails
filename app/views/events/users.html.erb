@@ -1,0 +1,15 @@
+<h1><%= pluralize(@event.users.count, "user") %> interested in <%= @event.name %></h1>
+
+<%= link_to "Back to Event", event_path(@event) %>
+
+<% if @event.users.any? %>
+  <ul>
+    <% @event.users.each do |user| %>
+      <li>
+        <%= image_tag user.avatar.variant(resize: "100x100") %> <%= link_to(user.name, user_path(user)) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no users to display.</p>
+<% end %>

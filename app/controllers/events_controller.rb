@@ -58,6 +58,9 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def users
+  end 
+
   private
 
   def event_params

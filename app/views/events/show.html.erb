@@ -28,6 +28,8 @@
   <%= simple_format(@event.description) %>
 </p>
 
+<p><strong>There <%= @event.users.count > 1 ? "are" : "is" %> <%= link_to pluralize(@event.users.count, "user"), event_users_path %> interested in this event. </strong> </p>
+
 <h2>Comments</h2>
 <%= render :partial => "comments/form", locals: {:event => @event, :comment => @comment} %>
 <br><br>

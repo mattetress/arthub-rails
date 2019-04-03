@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
   end
 
+  get '/events/:id/users' => 'events#users', as: 'event_users'
+
 
 
 end
