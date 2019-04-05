@@ -17,6 +17,14 @@ class User < ApplicationRecord
     self.avatar.attach(io: downloaded_image  , filename: "profile.jpg")
   end
 
+  def past_events
+    self.events.past_events
+  end
+
+  def upcoming_events
+    self.events.future_events
+  end 
+
   private
 
   def process_uri(uri)
