@@ -12,6 +12,7 @@
   <body>
     <header>
       <% if logged_in? %>
+        <%= link_to "Dashboard", dashboard_path %>
         <%= link_to "Events", events_path %>
         <%= link_to "Profile", user_path(current_user) %>
 
