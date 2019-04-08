@@ -1,3 +1,12 @@
+<% if @event.errors.any? %>
+  <p class="error">There were some problems with your submission:</p>
+  <ul>
+    <% @event.errors.full_messages.each do |message| %>
+      <li class="error"><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @event do |f| %>
   <%= f.label "Event Title" %>
   <%= f.text_field :name %>

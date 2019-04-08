@@ -1,3 +1,12 @@
+<% if @comment.errors.any? %>
+  <p class="error">There were some problems with your submission:</p>
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li class="error"><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for([@event, @comment]) do |f| %>
   <%= f.text_area :body %>
   <br>

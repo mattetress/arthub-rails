@@ -6,7 +6,9 @@ class Event < ApplicationRecord
   has_many :users, through: :interests
   has_one :location, dependent: :destroy
   has_one :city, through: :location
+  
   accepts_nested_attributes_for :location
+
   validates :name, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
