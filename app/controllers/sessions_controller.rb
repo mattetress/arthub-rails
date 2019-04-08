@@ -9,11 +9,9 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-
       redirect_to @user
     else
       flash[:error] = "There was a problem logging you in. Please check credentials and try again."
-
       render :new
     end
   end
@@ -27,7 +25,6 @@ class SessionsController < ApplicationController
     end
 
     session[:user_id] = @user.id
-
     redirect_to @user
   end
 
@@ -41,7 +38,4 @@ class SessionsController < ApplicationController
   def auth
     request.env['omniauth.auth']
   end
-
-
-
 end
