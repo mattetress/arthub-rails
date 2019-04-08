@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :login_required
   before_action :set_event
   before_action :set_comment, except: [:create]
+  before_action :owner_required, only: [:edit, :update, :destroy]
 
   def create
     @comment = @event.comments.build(comment_params)
@@ -44,5 +45,9 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def owner_required
+    return head(:forbidden) unless @comment.user == current_user
   end
 end
