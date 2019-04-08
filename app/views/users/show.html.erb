@@ -21,6 +21,18 @@
 
 <h3>User Bio:</h3>
 <p><%= @user.bio %></p>
+
+<h3>Upcoming events:</h3>
+<% if @user.upcoming_events.any? %>
+  <ul>
+    <% @user.upcoming_events.each do |event| %>
+      <li><%= link_to event.name, event_path(event) %> - <%= event.start_time.strftime("%A, %d %b %Y %l:%M %p") %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No upcoming events to show.</p>
+<% end %>
+
 <h3>Works:</h3>
 
 <% if @user.artworks.any? %>
