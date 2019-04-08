@@ -42,6 +42,9 @@ Rails.application.routes.draw do
 
   get '/events/:id/users' => 'events#users', as: 'event_users'
 
+  get '/dashboard' => 'users#dashboard', as: 'dashboard'
+
+
 
 
 end

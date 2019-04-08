@@ -59,7 +59,7 @@ class EventsController < ApplicationController
   end
 
   def users
-  end 
+  end
 
   private
 

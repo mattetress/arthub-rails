@@ -62,7 +62,11 @@ class UsersController < ApplicationController
 
     @user.update(user_params)
     redirect_to @user
-  end 
+  end
+
+  def dashboard
+    @events = current_user.upcoming_events
+  end
 
   private
 

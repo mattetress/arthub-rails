@@ -1,1 +1,9 @@
-<h1>Dashboard</h1>
+<h1>Welcome, <%= current_user.name %></h1>
+
+<h3>You have <%= pluralize(current_user.upcoming_events.count, "upcoming event") %>. </h3>
+
+<% if current_user.upcoming_events.any? %>
+  <%= render :partial => 'events/table', locals: { :events => @events } %>
+<% else %>
+  <p>You have haven't expressed interest in any upcoming events. Why not <%= link_to "browse upcoming events", events_path %>?</p>
+<% end %>
