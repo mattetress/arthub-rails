@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :login_required
   before_action :set_event
   before_action :set_comment, except: [:create]
 

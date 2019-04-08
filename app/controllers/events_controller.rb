@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :login_required
   before_action :find_event, except: [:index, :new, :create, :past_events]
   before_action :owner_required, only: [:edit, :destroy, :update]
 

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :login_required, only: :show
+  before_action :login_required, except: [:new, :create]
+  before_action :set_user, except: [:new, :create, :dashboard]
+
 
   def new
     @user = User.new
@@ -16,16 +18,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
     owner_required
   end
 
   def update
-    @user = User.find(params[:id])
     owner_required
     if @user.update(user_params)
       flash[:success] = "Your profile has been updated."
@@ -36,12 +35,10 @@ class UsersController < ApplicationController
   end
 
   def change_avatar
-    @user = User.find(params[:id])
     owner_required
   end
 
   def update_avatar
-    @user = User.find(params[:id])
     owner_required
 
     @user.avatar.purge
@@ -51,11 +48,9 @@ class UsersController < ApplicationController
   end
 
   def new_resume
-    @user = User.find(params[:id])
   end
 
   def attach_resume
-    @user = User.find(params[:id])
     owner_required
 
     @user.resume.purge
@@ -72,5 +67,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :bio, :website, :avatar, :resume)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
