@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if update_user
       flash[:success] = "Your profile has been updated."
       redirect_to @user
     else
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update_avatar
     @user.avatar.purge
 
-    @user.update(user_params)
+    update_user
     redirect_to @user
   end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def attach_resume
     @user.resume.purge
 
-    @user.update(user_params)
+    update_user
     redirect_to @user
   end
 
@@ -64,5 +64,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def update_user
+    @user.update(user_params)
   end
 end
