@@ -2,7 +2,6 @@ class ArtworksController < ApplicationController
   before_action :set_and_verify_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
 
-
   def new
     @artwork = Artwork.new
   end
