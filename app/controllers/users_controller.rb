@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :login_required, except: [:new, :create]
   before_action :set_user, except: [:new, :create, :dashboard]
-
+  before_action :owner_required, except: [:new, :show, :create, :dashboard]
 
   def new
     @user = User.new
@@ -21,11 +21,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    owner_required
   end
 
   def update
-    owner_required
     if @user.update(user_params)
       flash[:success] = "Your profile has been updated."
       redirect_to @user
@@ -35,12 +33,9 @@ class UsersController < ApplicationController
   end
 
   def change_avatar
-    owner_required
   end
 
   def update_avatar
-    owner_required
-
     @user.avatar.purge
 
     @user.update(user_params)
@@ -51,8 +46,6 @@ class UsersController < ApplicationController
   end
 
   def attach_resume
-    owner_required
-
     @user.resume.purge
 
     @user.update(user_params)
