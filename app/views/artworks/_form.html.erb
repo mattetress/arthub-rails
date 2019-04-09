@@ -1,9 +1,7 @@
 <% if @artwork.errors.any? %>
   <p class="error">There were some problems with your submission:</p>
   <ul>
-    <% @artwork.errors.full_messages.each do |message| %>
-      <li class="error"><%= message %></li>
-    <% end %>
+    <%= render :collection => @artwork.errors.full_messages, :partial => "artworks/error_messages", :as => :message %>
   </ul>
 <% end %>
 
