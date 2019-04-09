@@ -2,7 +2,8 @@
 
 <%= bootstrap_form_for @event do |f| %>
 
-  <%= f.text_field :name %>
+  <%= f.label "Event Title" %>
+  <%= f.text_field :name, skip_label: true %>
 
   <%= f.datetime_select :start_time, ampm: true, prompt: true, start_year: Date.today.year %>
 
