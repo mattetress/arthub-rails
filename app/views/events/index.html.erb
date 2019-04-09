@@ -1,4 +1,4 @@
 <h1>Upcoming Events</h1>
 <%= link_to "New Event", new_event_path %>  <%= link_to "View Past Events", past_events_path %>
 
-<%= render :partial => "table", locals: { :events => @events } %>
+<%= render "table", :events => @events %>

@@ -3,7 +3,7 @@
 <%= link_to "Upcoming Events", events_path %>
 
 <% if @events.any? %>
-  <%= render :partial => "table", locals: { :events => @events } %>
+  <%= render "table", :events => @events %>
 <% else %>
   <p>There are no past events.</p>
 <% end %>
