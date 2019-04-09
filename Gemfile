@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'thin'
 
+gem 'bootstrap'
+gem 'jquery-rails'
+
 gem 'open_uri_redirections'
 
 gem 'omniauth'

@@ -10,22 +10,24 @@
   </head>
 
   <body>
-    <header>
-      <% if logged_in? %>
-        <%= link_to "Dashboard", dashboard_path %>
-        <%= link_to "Events", events_path %>
-        <%= link_to "Profile", user_path(current_user) %>
+    <div class="container">
+      <header>
+        <% if logged_in? %>
+          <%= link_to "Dashboard", dashboard_path %>
+          <%= link_to "Events", events_path %>
+          <%= link_to "Profile", user_path(current_user) %>
 
-        <%= link_to "Log Out", logout_path, method: :delete %>
+          <%= link_to "Log Out", logout_path, method: :delete %>
+        <% end %>
+      </header>
+
+      <% if flash[:success] %>
+        <h3 class="success"><%= flash[:success] %></h3>
+      <% elsif flash[:error] %>
+        <h3 class="error"><%= flash[:error] %></h3>
       <% end %>
-    </header>
 
-    <% if flash[:success] %>
-      <h3 class="success"><%= flash[:success] %></h3>
-    <% elsif flash[:error] %>
-      <h3 class="error"><%= flash[:error] %></h3>
-    <% end %>
-
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>
