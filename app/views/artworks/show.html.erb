@@ -1,12 +1,8 @@
-<% if @artwork.user == current_user %>
-  <%= link_to "Edit Artwork", edit_user_artwork_path(@artwork.user, @artwork) %>  <%= link_to "Delete Artwork", user_artwork_path(@artwork.user, @artwork), method: :delete %>
-<% end %>
+<%= render "artworks/links", :artwork => @artwork %>
 
 <% if @artwork.images.attached? %>
   <ul>
-    <% @artwork.images.each do |image| %>
-      <li><%= link_to image_tag(image.variant(resize: "200x200")), url_for(image) %></li>
-    <% end %>
+    <%= render :collection => @artwork.images, :partial => "artworks/image_li", :as => :image %>
   </ul>
 <% else %>
   <p>No images submitted.</p>
