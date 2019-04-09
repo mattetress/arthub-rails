@@ -1,13 +1,11 @@
 <h1>Log In</h1>
 
-<%= form_tag "/login", method: :post do %>
-  <%= label_tag "email" %>
-  <%= text_field_tag :email %>
-  <br>
-  <%= label_tag "Password" %>
-  <%= password_field_tag :password %>
-  <br>
-  <%= submit_tag "Log In" %>
+<%= bootstrap_form_tag url: "/login" do |f| %>
+  <%= f.email_field :email %>
+
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log In" %>
 <% end %>
 
 <%= link_to "Login with Facebook", '/auth/facebook' %>

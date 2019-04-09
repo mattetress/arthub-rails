@@ -2,6 +2,6 @@
 
 <p>Choose a new profile picture:</p>
 <%= form_tag edit_avatar_path(@user), method: :post, multipart: true do %>
-  <%= file_field_tag 'user[avatar]' %>
+  <%= file_field_tag 'user[avatar]', :class => "form-control" %>
   <%= submit_tag "Update" %>
 <% end %>

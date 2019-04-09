@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'thin'
 
+gem 'bootstrap_form'
 gem 'bootstrap'
 gem 'jquery-rails'
 
