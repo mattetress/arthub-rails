@@ -1,0 +1,7 @@
+<li>
+  <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at.strftime("%d %b %Y %l:%M %p") %> <br>
+  <%= comment.body %> <br>
+  <% if comment.user == current_user %>
+    <%= link_to "Edit", edit_event_comment_path(@event, comment) %> <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+  <% end %>
+</li> <br>
