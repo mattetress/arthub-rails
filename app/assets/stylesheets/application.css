@@ -13,6 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ @import url('https://fonts.googleapis.com/css?family=Lobster');
+
+ .logo {
+   font-family: 'Lobster', cursive;
+   font-size: 5em;
+ }
+
 
 .success {
   color: #6fa234;
