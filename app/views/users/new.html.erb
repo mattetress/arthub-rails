@@ -1,13 +1,5 @@
 <h1>Sign Up</h1>
-
-<% if @user.errors.any? %>
-  <p class="error">There were some problems with your submission:</p>
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li class="error"><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= display_errors(@user) %>
 
 <%= form_for @user do |f| %>
 
@@ -20,10 +12,6 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %><br><br>
 
-
-
   <%= f.submit "Sign Up" %>
-
-
 
 <% end %>

@@ -1,9 +1,5 @@
-<% if @artwork.errors.any? %>
-  <p class="error">There were some problems with your submission:</p>
-  <ul>
-    <%= render :collection => @artwork.errors.full_messages, :partial => "artworks/error_messages", :as => :message %>
-  </ul>
-<% end %>
+<%= display_errors(@artwork) %>
+
 
 <%= form_for([@user, @artwork]) do |f| %>
 

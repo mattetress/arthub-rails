@@ -1,3 +1,4 @@
-  <li class="error">
-    <%= message %>
-  </li>
+<h3 class="error">There were some problems with your submission:</h3>
+<ul>
+  <%= render :collection => object.errors.full_messages, :partial => "artworks/error_li", :as => :message %>
+</ul>

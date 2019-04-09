@@ -1,9 +1,4 @@
-<% if @comment.errors.any? %>
-  <p class="error">There were some problems with your submission:</p>
-  <ul>
-    <%= render :collection => @comment.errors.full_messages, :partial => "artworks/error_messages", :as => :message %>
-  </ul>
-<% end %>
+<%= display_errors(@comment) %>
 
 <%= form_for([@event, @comment]) do |f| %>
   <%= f.text_area :body %>

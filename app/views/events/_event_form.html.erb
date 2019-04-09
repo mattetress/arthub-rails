@@ -1,9 +1,4 @@
-<% if @event.errors.any? %>
-  <p class="error">There were some problems with your submission:</p>
-  <ul>
-    <%= render :collection => @event.errors.full_messages, :partial => "artworks/error_messages", :as => :message %>
-  </ul>
-<% end %>
+<%= display_errors(@event) %>
 
 <%= form_for @event do |f| %>
   <%= f.label "Event Title" %>
