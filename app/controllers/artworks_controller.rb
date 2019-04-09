@@ -1,4 +1,5 @@
 class ArtworksController < ApplicationController
+  before_action :login_required
   before_action :set_and_verify_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_artwork, only: [:show, :edit, :update, :destroy]
 
