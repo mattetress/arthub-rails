@@ -41,9 +41,9 @@
       <% end %>
 
       <% if flash[:success] %>
-        <h3 class="success"><%= flash[:success] %></h3>
+        <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
       <% elsif flash[:error] %>
-        <h3 class="error"><%= flash[:error] %></h3>
+        <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
       <% end %>
 
       <%= yield %>
