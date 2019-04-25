@@ -12,7 +12,7 @@
 
 <% @events.each do |event| %>
     <tr>
-      <td><%= image_tag "star.png", class: "star" if event.users.include?(current_user) %></td>
+      <td><%= event.users.include?(current_user) ? (image_tag "star32.png", class: "star", id: "star-#{event.id}") : (image_tag "star-blank32.png", class: 'star', id: "star-#{event.id}") %></td>
       <td><%= image_tag event.image.variant(resize: "150x150") if event.image.attached? %></td>
       <td><%= link_to event.name, event_path(event) %></td>
       <td><%= event.start_time.strftime("%m/%d/%Y %l:%M%p") %></td>
