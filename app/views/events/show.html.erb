@@ -4,12 +4,10 @@
 <% if @event.user == current_user %>
   <%= link_to "Edit Event", edit_event_path(@event) %>
   <%= link_to "Delete Event", event_path(@event), method: :delete %>
-<% elsif current_user.events.include?(@event) %>
-  <p>You are interested in this event.</p>
-  <%= link_to "No Longer Interest in Event", remove_interest_path(@event) %>
-<% else %>
-  <%= link_to "Interested", add_interest_path(@event) %>
 <% end %>
+
+<%= link_to "Toggle Interest", "/events/#{@event.id}/toggle_interest" %>
+
 
 <br>
 
