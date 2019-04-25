@@ -59,6 +59,15 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def toggle_interest
+    if @event.users.include?(current_user)
+      @event.users.delete(current_user)
+    else
+      @event.users << current_user
+    end
+    render json: current_user.events 
+  end
+
   def users
   end
 

@@ -32,9 +32,7 @@ Rails.application.routes.draw do
 
   get '/events/past' => 'events#past_events', as: 'past_events'
 
-  get '/events/:id/interested' => 'events#add_interest', as: 'add_interest'
-
-  get '/events/:id/remove_interest' => 'events#remove_interest', as: 'remove_interest'
+  post '/events/:id/toggle_interest' => 'events#toggle_interest'
 
   resources :events do
     resources :comments, except: [:index, :show]
