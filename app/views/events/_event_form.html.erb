@@ -2,13 +2,48 @@
 
 <%= bootstrap_form_for @event do |f| %>
 
-  <%= f.label "Event Title" %>
-  <%= f.text_field :name, skip_label: true %>
-
-  <%= f.datetime_select :start_time, ampm: true, prompt: true, start_year: Date.today.year %>
-
-  <%= f.datetime_select :end_time, ampm: true, prompt: true, start_year: Date.today.year %>
-
+  <div class="form-row">
+    <div class="col-12">
+      <%= f.label "Event Title" %>
+      <%= f.text_field :name, skip_label: true %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-6">
+      <div class="form-row">
+        <div class="col-12">
+          <%= f.label "Start Time" %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-1"></div>
+        <div class="col-5">
+          <%= f.date_select :start_time, start_year: Date.today.year %>
+        </div>
+        <div class="col-5">
+          <%= f.time_select :start_time, ampm: true %>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-row">
+        <div class="col-12">
+          <%= f.label "End Time" %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-1"></div>
+        <div class="col-5">
+          <%= f.date_select :end_time %>
+        </div>
+        <div class="col-5">
+          <%= f.time_select :end_time, ampm: true %>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </div>
   <%= f.text_field :venue %>
 
   <%= f.fields_for :location do |location_form| %>
