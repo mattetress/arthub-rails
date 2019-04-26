@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'users#dashboard', as: 'dashboard'
 
+  get '/current_user' => 'sessions#return_current_user'
+
 
 
 

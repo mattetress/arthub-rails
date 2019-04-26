@@ -33,6 +33,10 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 
+  def return_current_user
+    render plain: current_user.id
+  end
+
   private
 
   def auth
