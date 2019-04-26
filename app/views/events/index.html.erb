@@ -16,21 +16,29 @@
 <script type="text/javascript" charset="utf-8">
   $("button#js-new-event").on('click', function(e) {
     $.get("/events/new", function(response) {
-      $("div#js-new-event-form").html(response);
-      $("form#new_event").on('submit', function(e) {
-        e.preventDefault();
-        newEventSubmit(this);
-      });
+      displayForm(response);
     })
   })
+
+  function displayForm(form) {
+    $("div#js-new-event-form").html(form);
+    $("form#new_event").on('submit', function(e) {
+      e.preventDefault();
+      newEventSubmit(this);
+    });
+  }
 
   function newEventSubmit(form) {
     const data = $(form).serialize();
     const posting = $.post("/events", data);
 
-    posting.done(function(data, status) {
+    posting.done(function(data) {
       console.log(data)
-      console.log(status)
+    })
+
+    posting.fail(function(response){
+      $("div#js-new-event-form").html("");
+      displayForm(response.responseText);
     })
 
 

@@ -22,9 +22,9 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      redirect_to @event
+      render json: @event, status: 201
     else
-      render 'events/new'
+      render 'events/new', layout: false, status: 400 
     end
   end
 
