@@ -14,6 +14,8 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @event.location = Location.new(event: @event)
+
+    render "new", layout: false
   end
 
   def create
@@ -65,7 +67,7 @@ class EventsController < ApplicationController
     else
       @event.users << current_user
     end
-    render json: current_user.events 
+    render json: current_user.events
   end
 
   def users
