@@ -24,12 +24,16 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event, status: 201
     else
-      render 'events/new', layout: false, status: 400 
+      render 'events/new', layout: false, status: 400
     end
   end
 
   def show
     @comment = Comment.new
+    respond_to do |f|
+      f.html {render 'show'}
+      f.json {render json: @event, serializer: EventsSerializer}
+    end
   end
 
   def edit
