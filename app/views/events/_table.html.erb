@@ -21,7 +21,7 @@
       <td><%= event.end_time.strftime("%m/%d/%Y %l:%M%p") %></td>
       <td><%= event.venue %></td>
       <td><%= event.accepting_applications ? "Yes" : "No" %></td>
-      <td><%= event.users.count %></td>
+      <td id="js-user-count-<%= event.id %>"><%= event.users.count %></td>
     </tr>
 
 <% end %>

@@ -22,6 +22,11 @@ function toggleInterest(star) {
   const id = parseInt($(star).data("id"));
   const state = parseInt($(star).data("state"));
   $.get(`/events/${id}/toggle_interest`);
+  if (state) {
+    addUser(id);
+  } else {
+    removeUser(id);
+  }
   toggleState(star);
 }
 
@@ -41,4 +46,16 @@ function toggleState(star) {
   } else {
     $(star).data("state", "1");
   }
+}
+
+function removeUser(eventId) {
+  const element = $(`td#js-user-count-${eventId}`);
+  let count = parseInt(element.text())
+  element.text(`${count - 1}`)
+}
+
+function addUser(eventId) {
+  const element = $(`td#js-user-count-${eventId}`);
+  let count = parseInt(element.text())
+  element.text(`${count + 1}`)
 }
