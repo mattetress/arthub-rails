@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
   end
 
   def return_current_user
-    render plain: current_user.id
+    render json: {id: current_user.id}
   end
 
   private
