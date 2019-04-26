@@ -14,7 +14,7 @@
   <div class="form-row">
 
     <%# COL 1 --- Location  %>
-    <div class="col-5">
+    <div class="col-6">
       <div class="form-row">
         <div class="col-12">
           <%= f.label "Location" %>
@@ -58,41 +58,24 @@
       </div>
     </div>
 
-    <div class="col">
-      <div class="form-row">
-        <div class="col-12">
-          <%= f.label "Start Time" %>
-        </div>
-      </div>
+    <div class="col-4">
       <div class="form-row">
 
 
-        <div class="col-6">
-          <%= f.label "Date" %>
-          <%= f.date_select :start_time, start_year: Date.today.year, skip_label: true %>
-        </div>
-        <div class="col-6">
-          <%= f.label "Time" %>
-          <%= f.time_select :start_time, ampm: true, skip_label: true %>
-        </div>
+          <%= f.datetime_field :start_time %>
+        <!-- <div class="col-12">
+          <%# f.label "Time" %>
+          <%# f.datetime_field :start_time, ampm: true, skip_label: true %>
+        </div> -->
       </div>
-    </div>
 
-    <div class="col">
+
       <div class="form-row">
-        <div class="col-12">
-          <%= f.label "End Time" %>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-6">
-          <%= f.label "Date" %>
-          <%= f.date_select :end_time, :skip_label => true %>
-        </div>
-        <div class="col-6">
-          <%= f.label "Time" %>
-          <%= f.time_select :end_time, ampm: true, skip_label: true %>
-        </div>
+          <%= f.datetime_field :end_time %>
+        <!-- <div class="col-6">
+          <%# f.label "Time" %>
+          <%# f.time_select :end_time, ampm: true, skip_label: true %>
+        </div> -->
       </div>
     </div>
   </div>
