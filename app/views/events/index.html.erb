@@ -2,7 +2,27 @@
 <%= link_to "New Event", new_event_path %>  <%= link_to "View Past Events", past_events_path %>
 <br>
 <%= button_tag 'New Event', type: 'button', class: "btn btn-outline-primary", id: "js-new-event" %>
-
-<div id="js-new-event-form"></div>
-
+<div  class="container">
+  <div class="row">
+    <div class=""></div>
+    <div class="col-12">
+      <div id="js-new-event-form" class="position-absolute"></div>
+    </div>
+    <div class=""></div>
+  </div>
+</div>
 <%= render "table", :events => @events %>
+
+<script type="text/javascript" charset="utf-8">
+  $("button#js-new-event").on('click', function(e) {
+    $.get("/events/new", function(response) {
+      $("div#js-new-event-form").html(response);
+      hideButton("#js-new-event");
+    })
+
+  })
+
+  function hideButton(selector) {
+    $(`button${selector}`).hide()
+  }
+</script>
