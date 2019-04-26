@@ -17,12 +17,8 @@
   $("button#js-new-event").on('click', function(e) {
     $.get("/events/new", function(response) {
       $("div#js-new-event-form").html(response);
-      hideButton("#js-new-event");
     })
 
   })
 
-  function hideButton(selector) {
-    $(`button${selector}`).hide()
-  }
 </script>
