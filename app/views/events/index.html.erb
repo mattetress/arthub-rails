@@ -17,8 +17,23 @@
   $("button#js-new-event").on('click', function(e) {
     $.get("/events/new", function(response) {
       $("div#js-new-event-form").html(response);
+      $("form#new_event").on('submit', function(e) {
+        e.preventDefault();
+        newEventSubmit(this);
+      });
+    })
+  })
+
+  function newEventSubmit(form) {
+    const data = $(form).serialize();
+    const posting = $.post("/events", data);
+
+    posting.done(function(data, status) {
+      console.log(data)
+      console.log(status)
     })
 
-  })
+
+  }
 
 </script>
