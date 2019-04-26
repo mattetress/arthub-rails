@@ -12,3 +12,17 @@
   </div>
 </div>
 <%= render "table", :events => @events %>
+
+
+<script id="table-row-template" type="text/x-handlebars-template">
+  <tr>
+    <td><img class="star" id="star-{{id}}" data-id="{{id}}" data-state="0" src="/assets/star-blank32.png" /></td>
+    <td><img src="{{imageUrl}}" /></td>
+    <td><a href="/events/{{id}}">{{name}}</a></td>
+    <td>{{startTime}}</td>
+    <td>{{endTime}}</td>
+    <td>{{venue}}</td>
+    <td>{{acceptingApplications}}</td>
+    <td>{{userCount}}</td>
+  </tr>
+</script>
