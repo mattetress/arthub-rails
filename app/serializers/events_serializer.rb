@@ -4,7 +4,9 @@ class EventsSerializer < ActiveModel::Serializer
   has_many :users
 
   def image_url
-    variant = object.image.variant(resize: "150x150")
-    return rails_representation_url(variant, only_path: true)
+    if object.image.attached?
+      variant = object.image.variant(resize: "150x150")
+      return rails_representation_url(variant, only_path: true)
+    end
   end
 end
