@@ -8,12 +8,18 @@
 
   <div class="row">
     <div class="col-xl-5">
-      <% if @event.user == current_user %>
-        <%= link_to "Edit Event", edit_event_path(@event) %>
-        <%= link_to "Delete Event", event_path(@event), method: :delete %>
-      <% end %>
+      <div id="event-buttons">
+        <% if @event.user == current_user %>
+          <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-primary btn-sm", role: "button" %>
+          <%= link_to "Delete Event", event_path(@event), method: :delete, class: "btn btn-secondary btn-sm", role: "button" %>
+        <% end %>
 
-      <%= link_to "Toggle Interest", "/events/#{@event.id}/toggle_interest" %>
+        <% if @event.users.include?(current_user) %>
+          <%= image_tag "/assets/star32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "1"} %>
+        <% else %>
+          <%= image_tag "/assets/star-blank32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "0"}%>
+        <% end %>
+      </div>
 
 
       <br>
