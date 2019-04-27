@@ -30,7 +30,14 @@
         <strong>Location: </strong> <%= @event.location.area %>, <%= @event.city.name %><br><br>
         <strong>Venue: </strong> <%= @event.venue %><br><br>
         <strong>Accepting Applications: </strong> <%= @event.accepting_applications ? "Yes" : "No" %><br><br>
-        <strong>There <%= @event.users.count > 1 ? "are" : "is" %> <%= link_to pluralize(@event.users.count, "user"), event_users_path %> interested in this event. </strong>
+        <strong>
+          <% if @event.users.count == 0 %>
+            There are 0 users interested in this event.
+          <% else %>
+            There <%= @event.users.count > 1 ? "are" : "is" %> <%= link_to pluralize(@event.users.count, "user"), event_users_path %> interested in this event.
+          <% end %>
+        </strong>
+        <strong> </strong>
       </p>
     </div>
   </div>
