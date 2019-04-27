@@ -1,7 +1,16 @@
-<li>
-  <%= link_to comment.user.name, user_path(comment.user) %> - <%= comment.created_at.strftime("%d %b %Y %l:%M %p") %> <br>
-  <%= comment.body %> <br>
-  <% if comment.user == current_user %>
-    <%= link_to "Edit", edit_event_comment_path(@event, comment) %> <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+<li class="media mt-5">
+  <% if comment.user.avatar.attached? %>
+    <%= link_to image_tag(comment.user.avatar.variant(resize: "64x64"), class: "mr-3 rounded-lg"), user_path(comment.user) %>
+  <% else %>
+    <%= link_to image_tag("/assets/profile64.png", class: "mr-3 rounded-lg"), user_path(comment.user) %>
   <% end %>
-</li> <br>
+
+  <div class="media-body">
+    <span class="comment-head"><%= link_to comment.user.name, user_path(comment.user) %> </span>
+    <small><%= comment.created_at.strftime("%d %b %Y %l:%M %p") %></small><br>
+    <%= comment.body %> <br>
+    <% if comment.user == current_user %>
+      <%= link_to "Edit", edit_event_comment_path(@event, comment) %> <%= link_to "Delete", event_comment_path(@event, comment), method: :delete %>
+    <% end %>
+  </div>
+</li>
