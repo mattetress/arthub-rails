@@ -7,7 +7,9 @@ class Event {
     this.endTime = new Date(attributes.end_time);
     this.venue = attributes.venue;
     this.acceptingApplications = (attributes.accepting_applications ? "Yes" : "No" )
-    this.userCount = 0;
+    this.userCount = attributes.user_count;
+    this.owner = new User(attributes.owner);
+    this.description = attributes.description;
   }
 
   renderTR() {
