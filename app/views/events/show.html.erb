@@ -54,7 +54,7 @@
 
   <div class="row">
     <div class="col-12">
-      <ul class="list-unstyled">
+      <ul id="js-new-comment" class="list-unstyled">
         <%= render :collection => @event.comments, :partial => "comments/comment_li", :locals => {:event => @event}, :as => :comment %>
       </ul>
     </div>
