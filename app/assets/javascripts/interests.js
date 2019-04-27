@@ -49,13 +49,13 @@ function toggleState(star) {
 }
 
 function removeUser(eventId) {
-  const element = $(`td#js-user-count-${eventId}`);
+  const element = $(`#js-user-count-${eventId}`);
   let count = parseInt(element.text())
   element.text(`${count - 1}`)
 }
 
 function addUser(eventId) {
-  const element = $(`td#js-user-count-${eventId}`);
+  const element = $(`#js-user-count-${eventId}`);
   let count = parseInt(element.text())
   element.text(`${count + 1}`)
 }
