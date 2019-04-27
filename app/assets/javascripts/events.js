@@ -13,18 +13,14 @@ class Event {
   renderTR() {
     return Event.template(this);
   }
-
 }
-
 
 $(function(){
   Event.templateSource = $("#table-row-template").html();
   Event.template = Handlebars.compile(Event.templateSource);
 
-  $("button#js-new-event").on('click', function(e) {
-    $.get("/events/new", function(response) {
-      displayForm(response);
-    })
+  $("button#js-new-event").on('click', function() {
+    $.get("/events/new", response => displayForm(response))
   })
 
   $.get("/current_user", function(data) {
@@ -50,13 +46,10 @@ function newEventSubmit(form) {
      enctype: 'multipart/form-data',
      contentType: false,
      processData: false,
-     success: function (response) {
-       updatePage(response);
-     },
-     error: function(response) {
-       redisplayForm(response)
-     }
+     success: (response) => updatePage(response),
+     error: (response) => redisplayForm(response)
   });
+}
 
 function updatePage(response) {
   $("div#js-new-event-form").html("");
@@ -69,27 +62,7 @@ function updatePage(response) {
   attachStarListener(`img#star-${thisEvent.id}`);
 }
 
-
 function redisplayForm(response){
   $("div#js-new-event-form").html("");
   displayForm(response.responseText);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
