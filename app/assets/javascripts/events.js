@@ -15,7 +15,7 @@ class Event {
     this.createdAt = new Date(attributes.created_at);
     this.users = attributes.users;
     this.city = attributes.city.name;
-    this.area = attributs.area;
+    this.area = attributes.area;
     this.comments = attributes.comments;
   }
 
@@ -83,12 +83,27 @@ $(function(){
 
   $("a.js-event-link").on('click', function(e) {
     e.preventDefault();
+
+    $.get((e.target + ".json"), response => displayEvent(response));
   })
 
   $.get("/current_user", function(data) {
     currentUser = data.id;
   })
 })
+
+
+function displayEvent(response) {
+  const thisEvent = new Event(response);
+  const html = thisEvent.renderEvent();
+
+  Handlebars.registerHelper("hbEventButtons", () => thisEvent.eventButtons());
+  Handlebars.registerHelper("hbListComments", () => thisEvent.listComments());
+
+
+  $("div#js-container").html(html);
+  debugger;
+}
 
 function displayForm(form) {
   $("div#js-new-event-form").html(form);
