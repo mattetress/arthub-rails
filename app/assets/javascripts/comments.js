@@ -1,4 +1,4 @@
-$(function() {
+function attachCommentListener(){
   $("form#new_comment").on('submit', function(e) {
     e.preventDefault();
 
@@ -11,4 +11,4 @@ $(function() {
       $("ul#js-new-comment").append(commentLi);
     })
   })
-})
+}

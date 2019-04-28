@@ -17,13 +17,16 @@ class Event {
     this.city = attributes.city.name;
     this.area = attributes.area;
     this.comments = attributes.comments;
+
+    Handlebars.registerHelper("hbEventButtons", () => this.renderEventButtons());
+    Handlebars.registerHelper("hbListComments", () => this.listComments());
   }
 
   renderTR() {
     return Event.template(this);
   }
 
-  eventButtons() {
+  renderEventButtons() {
     let buttons = "";
 
     if (this.owner.id === currentUser) {
@@ -35,15 +38,12 @@ class Event {
     } else {
       buttons += `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="0" src="/assets/star-blank32.png" />`
     }
-
     return buttons;
   }
 
   renderEvent() {
     return Event.showTemplate(this);
   }
-
-
 
   listComments() {
     let ul = "";
@@ -67,7 +67,20 @@ class Event {
 
     return ul;
   }
+}
 
+function attachEventLinkListener() {
+  $("a.js-event-link").on('click', function(e) {
+    e.preventDefault();
+
+    $.get((e.target + ".json"), response => displayEvent(response));
+  })
+}
+
+function attachEventFormListener() {
+  $("button#js-new-event").on('click', function() {
+    $.get("/events/new", response => displayForm(response))
+  })
 }
 
 $(function(){
@@ -76,16 +89,6 @@ $(function(){
 
   Event.showSource = $("#event-show-template").html();
   Event.showTemplate = Handlebars.compile(Event.showSource);
-
-  $("button#js-new-event").on('click', function() {
-    $.get("/events/new", response => displayForm(response))
-  })
-
-  $("a.js-event-link").on('click', function(e) {
-    e.preventDefault();
-
-    $.get((e.target + ".json"), response => displayEvent(response));
-  })
 
   $.get("/current_user", function(data) {
     currentUser = data.id;
@@ -97,12 +100,8 @@ function displayEvent(response) {
   const thisEvent = new Event(response);
   const html = thisEvent.renderEvent();
 
-  Handlebars.registerHelper("hbEventButtons", () => thisEvent.eventButtons());
-  Handlebars.registerHelper("hbListComments", () => thisEvent.listComments());
-
-
   $("div#js-container").html(html);
-  debugger;
+  attachListeners();
 }
 
 function displayForm(form) {

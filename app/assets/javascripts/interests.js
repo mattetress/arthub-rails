@@ -1,21 +1,18 @@
-$(document).ready(function() {
+function attachStarListener() {
   $("img.star").each(function(num, star) {
-    attachStarListener(star);
+    $(star).on('click', function(){
+      toggleInterest(star);
+    })
+
+    $(star).hover(function (){
+      toggleStarImage(star);
+      toggleState(star);
+    }, () => {
+      toggleStarImage(star);
+      toggleState(star);
+    })
   });
-});
 
-function attachStarListener(star) {
-  $(star).on('click', function(){
-    toggleInterest(star);
-  })
-
-  $(star).hover(function (){
-    toggleStarImage(star);
-    toggleState(star);
-  }, () => {
-    toggleStarImage(star);
-    toggleState(star);
-  })
 }
 
 function toggleInterest(star) {

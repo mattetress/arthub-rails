@@ -17,3 +17,14 @@
 //= require bootstrap
 //= require handlebars.min
 //= require_tree .
+
+$(function(){
+  attachListeners();
+})
+
+function attachListeners() {
+  attachEventFormListener();
+  attachEventLinkListener();
+  attachStarListener();
+  attachCommentListener();
+}
