@@ -11,7 +11,7 @@ class Event {
     this.acceptingApplications = (attributes.accepting_applications ? "Yes" : "No" )
     this.userCount = attributes.user_count;
     this.owner = new User(attributes.owner);
-    this.description = attributes.description;
+    this.description = attributes.description.replace(/\n/g,"<br>");
     this.createdAt = new Date(attributes.created_at);
     this.users = attributes.users;
     this.city = attributes.city.name;
