@@ -39,6 +39,10 @@ class Event {
     return buttons;
   }
 
+  renderEvent() {
+    return Event.showTemplate(this);
+  }
+
 
 
   listComments() {
@@ -70,8 +74,15 @@ $(function(){
   Event.templateSource = $("#table-row-template").html();
   Event.template = Handlebars.compile(Event.templateSource);
 
+  Event.showSource = $("#event-show-template").html();
+  Event.showTemplate = Handlebars.compile(Event.showSource);
+
   $("button#js-new-event").on('click', function() {
     $.get("/events/new", response => displayForm(response))
+  })
+
+  $("a.js-event-link").on('click', function(e) {
+    e.preventDefault();
   })
 
   $.get("/current_user", function(data) {
