@@ -7,17 +7,3 @@
 <% else %>
   <p>You have haven't expressed interest in any upcoming events. Why not <%= link_to "browse upcoming events", events_path, class: "js-events-index-link" %>?</p>
 <% end %>
-
-
-<script id="table-row-template" type="text/x-handlebars-template">
-  <tr>
-    <td>{{{star}}}</td>
-    <td><img src="{{imageUrl}}" /></td>
-    <td><a href="/events/{{id}}">{{name}}</a></td>
-    <td>{{startTime}}</td>
-    <td>{{endTime}}</td>
-    <td>{{venue}}</td>
-    <td>{{acceptingApplications}}</td>
-    <td id="js-user-count-{{id}}">{{userCount}}</td>
-  </tr>
-</script>
