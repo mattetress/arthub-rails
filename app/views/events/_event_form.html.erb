@@ -2,19 +2,83 @@
 
 <%= bootstrap_form_for @event do |f| %>
 
-  <%= f.label "Event Title" %>
-  <%= f.text_field :name, skip_label: true %>
+  <%# ROW 1 --- Title  %>
+  <div class="form-row">
+    <div class="col-12">
+      <%= f.label "Event Title" %>
+      <%= f.text_field :name, skip_label: true %>
+    </div>
+  </div>
 
-  <%= f.datetime_select :start_time, ampm: true, prompt: true, start_year: Date.today.year %>
+  <%# ROW 2 --- Location Start_Time End_Time %>
+  <div class="form-row">
 
-  <%= f.datetime_select :end_time, ampm: true, prompt: true, start_year: Date.today.year %>
+    <%# COL 1 --- Location  %>
+    <div class="col-6">
+      <div class="form-row">
+        <div class="col-12">
+          <%= f.label "Location" %>
+        </div>
+      </div>
 
-  <%= f.text_field :venue %>
+      <div class="form-row">
 
-  <%= f.fields_for :location do |location_form| %>
-    <%= location_form.select :city_id, City.all.collect { |c| [c.name, c.id] } %>
-    <%= location_form.text_field :area %>
-  <% end %>
+
+          <div class="col-3">
+            <%= f.label :venue %>
+          </div>
+          <div class="col-9">
+            <%= f.text_field :venue, skip_label: true %>
+          </div>
+
+
+
+        <%= f.fields_for :location do |location_form| %>
+
+          <div class="form-group col-3">
+            <%= f.label "Area", class: "col-form-label" %>
+          </div>
+          <div class="col-9">
+            <%= location_form.text_field :area, skip_label: true %>
+          </div>
+
+          <div class="col-3">
+            <%= f.label "City" %>
+          </div>
+          <div class="col-9">
+            <%= location_form.select :city_id, City.all.collect { |c| [c.name, c.id] }, skip_label: true %>
+          </div>
+        <% end %>
+
+
+
+
+
+
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="form-row">
+
+
+          <%= f.datetime_field :start_time %>
+        <!-- <div class="col-12">
+          <%# f.label "Time" %>
+          <%# f.datetime_field :start_time, ampm: true, skip_label: true %>
+        </div> -->
+      </div>
+
+
+      <div class="form-row">
+          <%= f.datetime_field :end_time %>
+        <!-- <div class="col-6">
+          <%# f.label "Time" %>
+          <%# f.time_select :end_time, ampm: true, skip_label: true %>
+        </div> -->
+      </div>
+    </div>
+  </div>
 
   <%= f.text_area :description, size: '80X90' %>
 

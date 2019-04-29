@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @event
+      render partial: "comments/comment_li", locals: { comment: @comment }, layout: false
     else
       render 'events/show'
     end

@@ -2,5 +2,5 @@
 
 <%= bootstrap_form_for([@event, @comment]) do |f| %>
   <%= f.text_area :body, :skip_label => true %>
-  <%= f.submit %>
+  <%= f.submit "Create Comment", id: "create-comment" %>
 <% end %>

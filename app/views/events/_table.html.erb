@@ -12,14 +12,18 @@
 
 <% @events.each do |event| %>
     <tr>
-      <td><%= image_tag "star.png", class: "star" if event.users.include?(current_user) %></td>
+      <td><%= event.users.include?(current_user) ?
+        (image_tag "star32.png", class: "star", id: "star-#{event.id}", data: { id: "#{event.id}", state: 1}) :
+         (image_tag "star-blank32.png", class: 'star', id: "star-#{event.id}", data: { id: "#{event.id}", state: 0}) %></td>
       <td><%= image_tag event.image.variant(resize: "150x150") if event.image.attached? %></td>
-      <td><%= link_to event.name, event_path(event) %></td>
+      <td><%= link_to event.name, event_path(event), data: {id: "#{event.id}"}, class: "js-event-link" %></td>
       <td><%= event.start_time.strftime("%m/%d/%Y %l:%M%p") %></td>
       <td><%= event.end_time.strftime("%m/%d/%Y %l:%M%p") %></td>
       <td><%= event.venue %></td>
       <td><%= event.accepting_applications ? "Yes" : "No" %></td>
-      <td><%= event.users.count %></td>
+      <td id="js-user-count-<%= event.id %>"><%= event.users.count %></td>
     </tr>
 
 <% end %>
+
+</table>

@@ -30,11 +30,11 @@ Rails.application.routes.draw do
 
   patch '/users/:id/upload_resume' => 'users#attach_resume'
 
+  get '/events/upcoming' => 'events#index'
+
   get '/events/past' => 'events#past_events', as: 'past_events'
 
-  get '/events/:id/interested' => 'events#add_interest', as: 'add_interest'
-
-  get '/events/:id/remove_interest' => 'events#remove_interest', as: 'remove_interest'
+  get '/events/:id/toggle_interest' => 'events#toggle_interest'
 
   resources :events do
     resources :comments, except: [:index, :show]
@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get '/events/:id/users' => 'events#users', as: 'event_users'
 
   get '/dashboard' => 'users#dashboard', as: 'dashboard'
+
+  get '/current_user' => 'sessions#return_current_user'
 
 
 

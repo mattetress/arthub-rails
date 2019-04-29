@@ -12,9 +12,32 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
-//= require_tree .
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require handlebars.min
 //= require_tree .
+
+$(function(){
+  attachListeners();
+  compileTemplates();
+})
+
+function attachListeners() {
+  attachEventFormListener();
+  attachEventLinkListener();
+  attachStarListener();
+  attachCommentListener();
+  attachEventsListener();
+}
+
+function compileTemplates() {
+  Event.templateSource = $("#table-row-template").html();
+  Event.template = Handlebars.compile(Event.templateSource);
+
+  Event.showSource = $("#event-show-template").html();
+  Event.showTemplate = Handlebars.compile(Event.showSource);
+
+  Event.tableSource = $("#hb-upcoming-events").html();
+  Event.trTemplate = Handlebars.compile(Event.tableSource);
+}

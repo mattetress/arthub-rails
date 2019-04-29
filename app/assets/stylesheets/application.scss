@@ -10,16 +10,25 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require events
  */
  @import "artworks", "comments", "events", "sessions", "static", "users";
  @import "bootstrap";
  @import url('https://fonts.googleapis.com/css?family=Lobster');
 
-body {
-  background-image: url(steve-johnson-1133776-unsplash.jpg);
+body:after{
+  content:"";
+  position:fixed; /* stretch a fixed position to the whole screen */
+  top:0;
+  height:100vh; /* fix for mobile browser address bar appearing disappearing */
+  left:0;
+  right:0;
+  z-index:-1; /* needed to keep in the background */
+  background: url(steve-johnson-1133776-unsplash.jpg) center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  height: 100%;
-  min-height: 100%;
 }
 
 .container {
@@ -61,4 +70,20 @@ body {
 
 .field_with_errors {
   border: 1px solid red;
+}
+
+.comment-head {
+  font-size: 1.2em;
+}
+
+div#event-buttons {
+  position: absolute;
+  top: -84px;
+  right: -606px;
+}
+
+div#event_buttons {
+  position: absolute;
+  top: 87px;
+  right: 150px;
 }

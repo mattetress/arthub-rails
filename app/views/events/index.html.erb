@@ -1,4 +1,15 @@
 <h1>Upcoming Events</h1>
-<%= link_to "New Event", new_event_path %>  <%= link_to "View Past Events", past_events_path %>
-
+<div id="event_buttons">
+  <%= button_tag 'New Event', type: 'button', class: "btn btn-outline-primary", id: "js-new-event" %>
+  <%= button_tag "Past Events", type: 'button', class: "btn btn-outline-secondary", id: 'js-past-events' %>
+</div>
+<div  class="container">
+  <div class="row">
+    <div class=""></div>
+    <div class="col-12">
+      <div id="js-new-event-form"></div>
+    </div>
+    <div class=""></div>
+  </div>
+</div>
 <%= render "table", :events => @events %>

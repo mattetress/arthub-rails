@@ -1,39 +1,75 @@
-<h1><%= @event.name %></h1>
-<p>Posted by: <%= link_to @event.user.name, user_path(@event.user)  %> at <%= @event.created_at.strftime("%d %b %Y %l:%M %p %Z") %></p>
 
-<% if @event.user == current_user %>
-  <%= link_to "Edit Event", edit_event_path(@event) %>
-  <%= link_to "Delete Event", event_path(@event), method: :delete %>
-<% elsif current_user.events.include?(@event) %>
-  <p>You are interested in this event.</p>
-  <%= link_to "No Longer Interest in Event", remove_interest_path(@event) %>
-<% else %>
-  <%= link_to "Interested", add_interest_path(@event) %>
-<% end %>
+  <div class="row">
+    <div class="col-12">
+      <h1><%= @event.name %></h1>
+      <p>Posted by: <%= link_to @event.user.name, user_path(@event.user)  %> at <%= @event.created_at.strftime("%d %b %Y %l:%M %p %Z") %></p>
+    </div>
+  </div>
 
-<br>
+  <div class="row">
+    <div class="col-xl-5">
+      <div id="event-buttons">
+        <% if @event.user == current_user %>
+          <%= link_to "Edit Event", edit_event_path(@event), class: "btn btn-primary btn-sm", role: "button" %>
+          <%= link_to "Delete Event", event_path(@event), method: :delete, class: "btn btn-secondary btn-sm", role: "button" %>
+        <% end %>
 
-<%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) if @event.image.attached? %>
+        <% if @event.users.include?(current_user) %>
+          <%= image_tag "/assets/star32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "1"} %>
+        <% else %>
+          <%= image_tag "/assets/star-blank32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "0"}%>
+        <% end %>
+      </div>
 
-<p>
-  <strong>Start time: </strong> <%= @event.start_time.strftime("%A, %d %b %Y %l:%M %p %Z") %><br>
-  <strong>End time: </strong> <%= @event.end_time.strftime("%A, %d %b %Y %l:%M %p %Z") %><br>
-  <strong>Location: </strong> <%= @event.location.area %>, <%= @event.city.name %><br>
-  <strong>Venue: </strong> <%= @event.venue %><br>
-  <strong>Accepting Applications: </strong> <%= @event.accepting_applications ? "Yes" : "No" %>
-</p>
 
-<p>
-  <strong>Event Description:</strong>
-  <%= simple_format(@event.description) %>
-</p>
+      <br>
+      <% if @event.image.attached? %>
+        <%= link_to image_tag(@event.image.variant(resize: "400x400")), url_for(@event.image) %>
+      <% end %>
+    </div>
 
-<p><strong>There <%= @event.users.count > 1 ? "are" : "is" %> <%= link_to pluralize(@event.users.count, "user"), event_users_path %> interested in this event. </strong> </p>
+    <div class="col-xl">
+      <h3 class="pt-4">Details</h3>
+      <p>
+        <strong>Start time: </strong> <%= @event.start_time.strftime("%A, %d %b %Y %l:%M %p %Z") %><br><br>
+        <strong>End time: </strong> <%= @event.end_time.strftime("%A, %d %b %Y %l:%M %p %Z") %><br><br>
+        <strong>Location: </strong> <%= @event.location.area %>, <%= @event.city.name %><br><br>
+        <strong>Venue: </strong> <%= @event.venue %><br><br>
+        <strong>Accepting Applications: </strong> <%= @event.accepting_applications ? "Yes" : "No" %><br><br>
+        <strong>
+          <% if @event.users.count == 0 %>
+            There are 0 users interested in this event.
+          <% else %>
+            There <%= @event.users.count > 1 ? "are" : "is" %> <%= link_to pluralize(@event.users.count, "user"), event_users_path %> interested in this event.
+          <% end %>
+        </strong>
+        <strong> </strong>
+      </p>
+    </div>
+  </div>
 
-<h2>Comments</h2>
-<%= render "comments/form", {:event => @event, :comment => @comment} %>
-<br><br>
+  <div class="row">
+    <div class="col-12">
+      <h5>Event Description</h5>
+      <p>
+        <%= simple_format(@event.description) %>
+      </p>
+    </div>
+  </div>
 
-<ul>
-  <%= render :collection => @event.comments, :partial => "comments/comment_li", :locals => {:event => @event}, :as => :comment %>
-</ul>
+
+  <div class="row">
+    <div class="col-12">
+      <h3 class="border-top mt-1 pt-3">Comments</h3>
+      <%= render "comments/form", {:event => @event, :comment => @comment} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <ul id="js-new-comment" class="list-unstyled">
+        <%= render :collection => @event.comments, :partial => "comments/comment_li", :locals => {:event => @event}, :as => :comment %>
+      </ul>
+    </div>
+  </div>
+</div>

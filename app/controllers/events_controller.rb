@@ -5,29 +5,43 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.future_events
+    respond_to do |f|
+      f.json {render json: @events}
+      f.html {render 'events/index'}
+    end
   end
 
   def past_events
     @events = Event.past_events
+    respond_to do |f|
+      f.json {render json: @events}
+      f.html {render "past_events"}
+    end 
   end
 
   def new
     @event = Event.new
     @event.location = Location.new(event: @event)
+
+    render "new", layout: false
   end
 
   def create
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      redirect_to @event
+      render json: @event, status: 201
     else
-      render 'events/new'
+      render 'events/new', layout: false, status: 400
     end
   end
 
   def show
     @comment = Comment.new
+    respond_to do |f|
+      f.html {render 'show'}
+      f.json {render json: @event}
+    end
   end
 
   def edit
@@ -57,6 +71,15 @@ class EventsController < ApplicationController
     flash[:success] = "#{@event.name} successfully removed from your events."
     @event.users.delete(current_user)
     redirect_to @event
+  end
+
+  def toggle_interest
+    if @event.users.include?(current_user)
+      @event.users.delete(current_user)
+    else
+      @event.users << current_user
+    end
+    render json: current_user.events
   end
 
   def users

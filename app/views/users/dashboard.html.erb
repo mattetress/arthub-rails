@@ -5,5 +5,5 @@
 <% if current_user.upcoming_events.any? %>
   <%= render :partial => 'events/table', locals: { :events => @events } %>
 <% else %>
-  <p>You have haven't expressed interest in any upcoming events. Why not <%= link_to "browse upcoming events", events_path %>?</p>
+  <p>You have haven't expressed interest in any upcoming events. Why not <%= link_to "browse upcoming events", events_path, class: "js-events-index-link" %>?</p>
 <% end %>
