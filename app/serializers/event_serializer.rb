@@ -1,4 +1,4 @@
-class EventsSerializer < ActiveModel::Serializer
+class EventSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
   attributes :id, :user_id, :name, :description, :city, :area, :image_url, :image_url_400, :image_url_full, :start_time, :end_time, :venue, :accepting_applications, :user_count, :created_at
