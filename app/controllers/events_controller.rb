@@ -13,6 +13,10 @@ class EventsController < ApplicationController
 
   def past_events
     @events = Event.past_events
+    respond_to do |f|
+      f.json {render json: @events}
+      f.html {render "past_events"}
+    end 
   end
 
   def new

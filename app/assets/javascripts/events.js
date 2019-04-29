@@ -76,9 +76,9 @@ class Event {
     return ul;
   }
 
-  static renderEvents(response) {
+  static renderEvents(response, timeFrame) {
     let html =
-      `<h1>Upcoming Events</h1>
+      `<h1>${capitalize(timeFrame)} Events</h1>
       <div id="event_buttons">
         <button name="button" type="button" class="btn btn-outline-primary" id="js-new-event">New Event</button>
         <button name="button" type="button" class="btn btn-outline-secondary" id="js-past-events">Past Events</button>
@@ -128,6 +128,10 @@ Handlebars.registerHelper("hbRenderEvents", () => {
   thisEvent = new Event(this);
   thisEvent.renderTr();
 });
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 function attachEventFormListener() {

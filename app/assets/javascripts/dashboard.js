@@ -3,16 +3,18 @@
 function attachEventsListener() {
   $(".js-events-index-link").on('click', function(e) {
     e.preventDefault();
-    loadEvents();
+    loadEvents('upcoming');
   })
+
+  $("button#js-past-events").on('click', () => loadEvents('past'));
 }
 
-function loadEvents() {
-  $.get('/events', response => displayEvents(response));
+function loadEvents(timeFrame) {
+  $.get('/events/' + timeFrame, response => displayEvents(response, timeFrame));
 }
 
-function displayEvents(response) {
-  let html = Event.renderEvents(response);
+function displayEvents(response, timeFrame) {
+  let html = Event.renderEvents(response, timeFrame);
   $("div#js-container").html(html);
   attachListeners();
 }

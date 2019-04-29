@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   patch '/users/:id/upload_resume' => 'users#attach_resume'
 
+  get '/events/upcoming' => 'events#index'
+
   get '/events/past' => 'events#past_events', as: 'past_events'
 
   get '/events/:id/toggle_interest' => 'events#toggle_interest'
