@@ -5,6 +5,10 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.future_events
+    respond_to do |f|
+      f.json {render json: @events}
+      f.html {render 'events/index'}
+    end
   end
 
   def past_events
@@ -22,7 +26,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      render json: @event, serializer: EventsSerializer, status: 201
+      render json: @event, status: 201
     else
       render 'events/new', layout: false, status: 400
     end
@@ -32,7 +36,7 @@ class EventsController < ApplicationController
     @comment = Comment.new
     respond_to do |f|
       f.html {render 'show'}
-      f.json {render json: @event, serializer: EventsSerializer}
+      f.json {render json: @event}
     end
   end
 
