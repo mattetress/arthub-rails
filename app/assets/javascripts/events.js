@@ -20,6 +20,9 @@ class Event {
 
     Handlebars.registerHelper("hbEventButtons", () => this.renderEventButtons());
     Handlebars.registerHelper("hbListComments", () => this.listComments());
+    Handlebars.registerHelper("star", () => this.renderStar());
+
+
   }
 
   renderTR() {
@@ -33,12 +36,17 @@ class Event {
       buttons += `<a class="btn btn-primary btn-sm" role="button" href="/events/${this.id}/edit">Edit Event</a> <a class="btn btn-secondary btn-sm" role="button" rel="nofollow" data-method="delete" href="/events/${this.id}">Delete Event</a>`
     }
 
-    if (this.users.some(user => user.id === currentUser)) {
-      buttons += `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="1" src="/assets/star32.png" />`
-    } else {
-      buttons += `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="0" src="/assets/star-blank32.png" />`
-    }
+    buttons += this.renderStar();
+
     return buttons;
+  }
+
+  renderStar() {
+    if (this.users.some(user => user.id === currentUser)) {
+      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="1" src="/assets/star32.png" />`
+    } else {
+      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="0" src="/assets/star-blank32.png" />`
+    }
   }
 
   renderEvent() {
@@ -67,6 +75,45 @@ class Event {
 
     return ul;
   }
+
+  static renderEvents(response) {
+    let html =
+      `<h1>Upcoming Events</h1>
+      <div id="event_buttons">
+        <button name="button" type="button" class="btn btn-outline-primary" id="js-new-event">New Event</button>
+        <button name="button" type="button" class="btn btn-outline-secondary" id="js-past-events">Past Events</button>
+      </div>
+      <div  class="container">
+        <div class="row">
+          <div class=""></div>
+          <div class="col-12">
+            <div id="js-new-event-form"></div>
+          </div>
+          <div class=""></div>
+        </div>
+      </div>
+      <table class="table">
+        <tr>
+          <th>Interested</th>
+          <th>Image</th>
+          <th>Event Title</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Venue</th>
+          <th>Accepting Applications</th>
+          <th>Users Interested:</th>
+        </tr>`
+
+    response.forEach(function(data) {
+      const thisEvent = new Event(data);
+      html += thisEvent.renderTR();
+    });
+
+    html += "</table>"
+
+    return html;
+  }
+
 }
 
 function attachEventLinkListener() {
@@ -77,6 +124,12 @@ function attachEventLinkListener() {
   })
 }
 
+Handlebars.registerHelper("hbRenderEvents", () => {
+  thisEvent = new Event(this);
+  thisEvent.renderTr();
+});
+
+
 function attachEventFormListener() {
   $("button#js-new-event").on('click', function() {
     $.get("/events/new", response => displayForm(response))
@@ -84,17 +137,10 @@ function attachEventFormListener() {
 }
 
 $(function(){
-  Event.templateSource = $("#table-row-template").html();
-  Event.template = Handlebars.compile(Event.templateSource);
-
-  Event.showSource = $("#event-show-template").html();
-  Event.showTemplate = Handlebars.compile(Event.showSource);
-
   $.get("/current_user", function(data) {
     currentUser = data.id;
   })
 })
-
 
 function displayEvent(response) {
   const thisEvent = new Event(response);

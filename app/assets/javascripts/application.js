@@ -20,6 +20,7 @@
 
 $(function(){
   attachListeners();
+  compileTemplates();
 })
 
 function attachListeners() {
@@ -27,4 +28,16 @@ function attachListeners() {
   attachEventLinkListener();
   attachStarListener();
   attachCommentListener();
+  attachEventsListener();
+}
+
+function compileTemplates() {
+  Event.templateSource = $("#table-row-template").html();
+  Event.template = Handlebars.compile(Event.templateSource);
+
+  Event.showSource = $("#event-show-template").html();
+  Event.showTemplate = Handlebars.compile(Event.showSource);
+
+  Event.tableSource = $("#hb-upcoming-events").html();
+  Event.trTemplate = Handlebars.compile(Event.tableSource);
 }
