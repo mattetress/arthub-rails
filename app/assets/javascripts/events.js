@@ -185,7 +185,7 @@ function updatePage(response) {
 
   $("tbody>tr:first-child").after(newRow);
 
-  attachStarListener(`img#star-${thisEvent.id}`);
+  attachListeners();
 }
 
 function redisplayForm(response){
