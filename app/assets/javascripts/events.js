@@ -43,9 +43,9 @@ class Event {
 
   renderStar() {
     if (this.users.some(user => user.id === currentUser)) {
-      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="1" src="/assets/star32.png" />`
+      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="1" src="/star32.png" />`
     } else {
-      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="0" src="/assets/star-blank32.png" />`
+      return `<img class="star" id="star-${this.id}" data-id="${this.id}" data-state="0" src="/star-blank32.png" />`
     }
   }
 
