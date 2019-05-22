@@ -15,9 +15,9 @@
         <% end %>
 
         <% if @event.users.include?(current_user) %>
-          <%= image_tag "/assets/star32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "1"} %>
+          <%= image_tag "star32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "1"} %>
         <% else %>
-          <%= image_tag "/assets/star-blank32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "0"}%>
+          <%= image_tag "star-blank32.png", class: "star", id: "star-#{@event.id}", data: {id: "#{@event.id}", state: "0"}%>
         <% end %>
       </div>
 
