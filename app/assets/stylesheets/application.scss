@@ -73,6 +73,11 @@ body:after{
    text-align: center;
  }
 
+ .home-form {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
 
  .home-logo {
      background-color: rgba(255,255,255,0.85);

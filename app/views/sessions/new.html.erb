@@ -1,13 +1,20 @@
-<h1>Log In</h1>
+<div class="fill home-form">
+  <div class="w-75 home-logo">
 
-<%= bootstrap_form_tag url: "/login" do |f| %>
-  <%= f.email_field :email %>
 
-  <%= f.password_field :password %>
+    <h1>Log In</h1>
 
-  <%= f.submit "Log In" %>
-<% end %>
+    <%= bootstrap_form_tag url: "/login" do |f| %>
+      <%= f.email_field :email %>
 
-<br>
+      <%= f.password_field :password %>
 
-<%= link_to "Login with Facebook", '/auth/facebook' %>
+      <%= f.submit "Log In" %>
+    <% end %>
+
+    <br>
+
+    <%= link_to "Login with Facebook", '/auth/facebook' %>
+
+  </div>
+</div>
