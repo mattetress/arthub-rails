@@ -32,7 +32,7 @@ function toggleStarImage(star) {
   if (state) {
     $(star).attr('src', '/star-blank32.png');
   } else {
-    $(star).attr("src", '/assets/star32.png');
+    $(star).attr("src", '/star32.png');
   }
 }
 
