@@ -1,57 +1,61 @@
-<h1><%= @user.name %>'s Profile</h1>
+<div class="fill bg-white p-5">
 
-<p><%= link_to "Edit profile", edit_user_path(@user) if current_user == @user %></p>
+  <h1><%= @user.name %>'s Profile</h1>
 
-<%= image_tag(@user.avatar.variant(resize: "200x200")) if @user.avatar.attached?%>
-<br>
-<%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
+  <p><%= link_to "Edit profile", edit_user_path(@user) if current_user == @user %></p>
 
-<p><%= "Website:" unless @user.website == "" || @user.website.nil? %> <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
-<p>Resume/CV: <br>
-  <% if @user.resume.attached? %>
-    <%= image_tag @user.resume.preview(resize: "200x200") %> <br>
-    <%= link_to "View Resume/CV", url_for(@user.resume) %><br>
-    <%= link_to "Update Resume/CV", new_user_resume_path(@user) %>
-  <% elsif @user == current_user %>
-    <%= link_to "Upload Resume/CV", new_user_resume_path(@user) %>
+  <%= image_tag(@user.avatar.variant(resize: "200x200")) if @user.avatar.attached?%>
+  <br>
+  <%= link_to "Change profile picture", edit_avatar_path if current_user == @user %>
+
+  <p><%= "Website:" unless @user.website == "" || @user.website.nil? %> <%= link_to(@user.website) unless @user.website.nil? || @user.website == "" %></p>
+  <p>Resume/CV: <br>
+    <% if @user.resume.attached? %>
+      <%= image_tag @user.resume.preview(resize: "200x200") %> <br>
+      <%= link_to "View Resume/CV", url_for(@user.resume) %><br>
+      <%= link_to "Update Resume/CV", new_user_resume_path(@user) %>
+    <% elsif @user == current_user %>
+      <%= link_to "Upload Resume/CV", new_user_resume_path(@user) %>
+    <% else %>
+      User has not uploaded a resume/CV.
+    <% end %>
+  </p>
+
+  <h3>User Bio:</h3>
+  <p><%= @user.bio %></p>
+
+  <h3>Upcoming events:</h3>
+  <% if @user.upcoming_events.any? %>
+    <ul>
+      <% @user.upcoming_events.each do |event| %>
+        <li><%= link_to event.name, event_path(event) %> - <%= event.start_time.strftime("%A, %d %b %Y %l:%M %p") %></li>
+      <% end %>
+    </ul>
   <% else %>
-    User has not uploaded a resume/CV.
+    <p>No upcoming events to show.</p>
   <% end %>
-</p>
 
-<h3>User Bio:</h3>
-<p><%= @user.bio %></p>
+  <h3>Works:</h3>
 
-<h3>Upcoming events:</h3>
-<% if @user.upcoming_events.any? %>
-  <ul>
-    <% @user.upcoming_events.each do |event| %>
-      <li><%= link_to event.name, event_path(event) %> - <%= event.start_time.strftime("%A, %d %b %Y %l:%M %p") %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No upcoming events to show.</p>
-<% end %>
+  <% if @user.artworks.any? %>
+  <%= link_to "Add Work", new_user_artwork_path(@user) %>
 
-<h3>Works:</h3>
+    <ul>
+      <% @user.artworks.each do |artwork| %>
+      <li>
+        <a href="<%= user_artwork_path(@user, artwork) %>">
+          <div class="artwork">
+            <%= image_tag(artwork.images.first.variant(resize: "200x200")) %><br>
+            <%= artwork.title %>, <%= artwork.date.strftime("%B %Y") %>
+          </div>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  <% elsif current_user == @user %>
+    <p>You have not added any works to your profile.  You can begin by <%= link_to "adding one now", new_user_artwork_path(@user) %>.</p>
+  <% else %>
+    <p>This user has not added any works to their portfolio.</p>
+  <% end %>
 
-<% if @user.artworks.any? %>
-<%= link_to "Add Work", new_user_artwork_path(@user) %>
-
-  <ul>
-    <% @user.artworks.each do |artwork| %>
-    <li>
-      <a href="<%= user_artwork_path(@user, artwork) %>">
-        <div class="artwork">
-          <%= image_tag(artwork.images.first.variant(resize: "200x200")) %><br>
-          <%= artwork.title %>, <%= artwork.date.strftime("%B %Y") %>
-        </div>
-      </a>
-    </li>
-    <% end %>
-  </ul>
-<% elsif current_user == @user %>
-  <p>You have not added any works to your profile.  You can begin by <%= link_to "adding one now", new_user_artwork_path(@user) %>.</p>
-<% else %>
-  <p>This user has not added any works to their portfolio.</p>
-<% end %>
+</div>

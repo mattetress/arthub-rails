@@ -78,38 +78,38 @@ class Event {
 
   static renderEvents(response, timeFrame) {
     let html =
-      `<h1>${capitalize(timeFrame)} Events</h1>
-      <div id="event_buttons">
-        <button name="button" type="button" class="btn btn-outline-primary" id="js-new-event">New Event</button>
-        <button name="button" type="button" class="btn btn-outline-secondary" id="js-past-events">Past Events</button>
-      </div>
-      <div  class="container">
-        <div class="row">
-          <div class=""></div>
-          <div class="col-12">
-            <div id="js-new-event-form"></div>
-          </div>
-          <div class=""></div>
+      `<div class="bg-white fill p-5">
+        <h1>${capitalize(timeFrame)} Events</h1>
+        <div id="event_buttons">
+          <button name="button" type="button" class="btn btn-outline-primary" id="js-new-event">New Event</button>
+          <button name="button" type="button" class="btn btn-outline-secondary" id="js-past-events">Past Events</button>
         </div>
-      </div>
-      <table class="table">
-        <tr>
-          <th>Interested</th>
-          <th>Image</th>
-          <th>Event Title</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-          <th>Venue</th>
-          <th>Accepting Applications</th>
-          <th>Users Interested:</th>
-        </tr>`
+          <div class="row">
+            <div class=""></div>
+            <div class="col-12">
+              <div id="js-new-event-form"></div>
+            </div>
+            <div class=""></div>
+          </div>
+        
+        <table class="table">
+          <tr>
+            <th>Interested</th>
+            <th>Image</th>
+            <th>Event Title</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Venue</th>
+            <th>Accepting Applications</th>
+            <th>Users Interested:</th>
+          </tr>`
 
     response.forEach(function(data) {
       const thisEvent = new Event(data);
       html += thisEvent.renderTR();
     });
 
-    html += "</table>"
+    html += "</table></div>"
 
     return html;
   }
