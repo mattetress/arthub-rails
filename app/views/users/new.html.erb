@@ -1,14 +1,18 @@
-<h1>Sign Up</h1>
-<%= display_errors(@user) %>
+<div class="fill vc home-form">
+  <div class="w-75 home-logo">
+    <h1>Sign Up</h1>
+    <%= display_errors(@user) %>
 
-<%= bootstrap_form_for @user do |f| %>
+    <%= bootstrap_form_for @user do |f| %>
 
-  <%= f.email_field :email %>
+      <%= f.email_field :email %>
 
-  <%= f.password_field :password %>
+      <%= f.password_field :password %>
 
-  <%= f.password_field :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Sign Up" %>
+      <%= f.submit "Sign Up" %>
 
-<% end %>
+    <% end %>
+  </div>
+</div>
