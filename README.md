@@ -1,18 +1,10 @@
-# README
-
-This is a rails app for artists to share local art events.
-
-Users are able to create accounts and sign in via facebook or by email address.
-
-When running the server be sure to start the server using `thin start --ssl` because facebook requires ssl for oauth.
-
 # ArtHub
 
 ArtHub is a networking and event sharing platform for artists. Artists can sign up via email or Facebook OAuth. Artist profiles have portfolio functionality.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Installing
 
