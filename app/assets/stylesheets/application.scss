@@ -22,6 +22,11 @@
     width: 100%;
 }
 
+div#event_buttons {
+    position: absolute;
+    top: 124px;
+    right: 213px;
+}
 
 body:after{
   content:"";
@@ -108,10 +113,4 @@ body:after{
 
 .comment-head {
   font-size: 1.2em;
-}
-
-div#event_buttons {
-    position: absolute;
-    top: 124px;
-    right: 213px;
 }

@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,7 +14,7 @@
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 
         <a href="/" class="navbar-brand">
-        <span class="nav-logo white-text">ArtHub</span></a>
+          <span class="nav-logo white-text">ArtHub</span></a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-links">
           <span class="navbar-toggler-icon"></span>
@@ -41,25 +41,28 @@
 
     <% if flash[:success] %>
       <div class="alert alert-success" role="alert"><%= flash[:success] %></div>
-    <% elsif flash[:error] %>
-      <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
-    <% end %>
+      <% elsif flash[:error] %>
+        <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+      <% end %>
 
-    <div class="container fill">
+      <div class="container fill">
 
-
-      <div id="js-container" class="fill">
-        <%= yield %>
+        <div id="js-container" class="fill">
+          <%= yield %>
+        </div>
       </div>
-    </div>
 
-    <script id="table-row-template" type="text/x-handlebars-template">
-      <tr>
-        <td>{{{star}}}</td>
-        <td><img src="{{imageUrl}}" /></td>
-        <td><a data-id="{{id}}" class="js-event-link" href="/events/{{id}}">{{name}}</a></td>
-        <td>{{startTime}}</td>
-        <td>{{endTime}}</td>
+      <script id="table-row-template" type="text/x-handlebars-template">
+        <tr>
+          <td>{{{star}}}</td>
+          <td><img src="{{imageUrl}}"/></td>
+          <td>
+            <a data-id="{{id}}" class="js-event-link" href="/events/{{id}}">{{name}}</a>
+          </td>
+          <td>{{startTime}}</td>
+          <td>
+          {{endTime}}
+        </td>
         <td>{{venue}}</td>
         <td>{{acceptingApplications}}</td>
         <td id="js-user-count-{{id}}">{{userCount}}</td>
@@ -67,36 +70,53 @@
     </script>
 
     <script id="event-show-template" type="text/x-handlebars-template">
-      <div class="row">
-        <div class="col-12">
-          <h1>{{name}}</h1>
-          <p>Posted by: <a href="/users/{{owner.id}}">{{owner.name}}</a> at {{createdAt}}</p>
-        </div>
-      </div>
+      <div class="fill white-bg p-5">
 
-      <div class="row">
-        <div class="col-xl-5">
-          <div id="event-buttons">
+        <div class="row">
+          <div class="col-12">
+            <h1>{{name}}</h1>
+            <p>Posted by:
+              <a href="/users/{{owner.id}}">{{owner.name}}</a>
+              at
+              {{createdAt}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-5">
+            <div id="event-buttons">
               {{{hbEventButtons}}}
+            </div>
+
+            <br>
+            <a href="{{imageUrlFull}}"><img src="{{imageUrl400}}"/></a>
           </div>
 
-
-          <br>
-            <a href="{{imageUrlFull}}"><img src="{{imageUrl400}}" /></a>
-        </div>
-
-        <div class="col-xl">
-          <h3 class="pt-4">Details</h3>
-          <p>
-            <strong>Start time: </strong> {{startTime}}<br><br>
-            <strong>End time: </strong> {{endTime}}<br><br>
-            <strong>Location: </strong> {{area}}, {{city}}<br><br>
-            <strong>Venue: </strong> {{venue}}<br><br>
-            <strong>Accepting Applications: </strong> {{acceptingApplications}}<br><br>
-            <strong>
-                There are {{userCount}} users interested in this event.
+          <div class="col-xl">
+            <h3 class="pt-4">Details</h3>
+            <p>
+              <strong>Start time:
+              </strong>
+              {{startTime}}<br><br>
+              <strong>End time:
+              </strong>
+            {{endTime}}<br><br>
+            <strong>Location:
             </strong>
-            <strong> </strong>
+            {{area}},
+            {{city}}<br><br>
+            <strong>Venue:
+            </strong>
+            {{venue}}<br><br>
+            <strong>Accepting Applications:
+            </strong>
+            {{acceptingApplications}}<br><br>
+            <strong>
+              There are
+              {{userCount}}
+              users interested in this event.
+            </strong>
+            <strong></strong>
           </p>
         </div>
       </div>
@@ -110,17 +130,16 @@
         </div>
       </div>
 
-
       <div class="row">
         <div class="col-12">
           <h3 class="border-top mt-1 pt-3">Comments</h3>
 
-
-    <form class="new_comment" id="new_comment" role="form" action="/events/{{id}}/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-      <div class="form-group"><textarea class="form-control" name="comment[body]" id="comment_body">
-    </textarea></div>
-      <input type="submit" name="commit" value="Create Comment" id="create-comment" class="btn btn-secondary" data-disable-with="Create Comment" />
-    </form>
+          <form class="new_comment" id="new_comment" role="form" action="/events/{{id}}/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;"/><%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+            <div class="form-group">
+              <textarea class="form-control" name="comment[body]" id="comment_body"></textarea>
+            </div>
+            <input type="submit" name="commit" value="Create Comment" id="create-comment" class="btn btn-secondary" data-disable-with="Create Comment"/>
+          </form>
         </div>
       </div>
 
@@ -129,7 +148,9 @@
           {{{hbListComments}}}
         </div>
       </div>
-    </script>
+      
+    </div>
+  </script>
 
-  </body>
+</body>
 </html>

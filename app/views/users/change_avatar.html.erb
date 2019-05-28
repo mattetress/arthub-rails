@@ -1,7 +1,9 @@
-<h1>Update Profile Picture</h1>
+<div class="fill white-bg p-5">
+  <h1>Update Profile Picture</h1>
 
-<p>Choose a new profile picture:</p>
-<%= form_tag edit_avatar_path(@user), method: :post, multipart: true do %>
-  <%= file_field_tag 'user[avatar]', :class => "form-control" %>
-  <%= submit_tag "Update" %>
-<% end %>
+  <p>Choose a new profile picture:</p>
+  <%= form_tag edit_avatar_path(@user), method: :post, multipart: true do %>
+    <%= file_field_tag 'user[avatar]', :class => "form-control" %>
+    <%= submit_tag "Update" %>
+  <% end %>
+</div>
