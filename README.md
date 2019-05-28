@@ -31,9 +31,6 @@ $ touch .env
 Add Facebook key and secret to .env file.  Be sure to replace the X's with your own info.  Key and secret can be created at developers.facebook.com
 
 ```
-# in .env
-
-
 FACEBOOK_KEY=XXXXXXXX
 FACEBOOK_SECRET=XXXXXXXX
 ```
